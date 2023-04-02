@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="lucky-container">
+        <h1>Tur eller otur</h1>
+        <h2>Få högre tärnings-värde än datorn</h2>
+        {% if p_number > cpu_number %}
+        <p>Datorns tärning: {{ cpu_number }}</p>
+        <p>Din tärning: {{ p_number }}</p>
+        <p>Du vann! Nu ska vi fira</p>
+        <img src="{{ asset('img/minion-victory.gif') }}" width="200px" alt="Minions firar segern">
+        {% else %}
+        <p>Datorns tärning: {{ cpu_number }}</p>
+        <p>Din tärning: {{ p_number }}</p>
+        <p>Tyvärr så lyckades du inte..</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

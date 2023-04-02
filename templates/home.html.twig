@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <h1>Hem</h1>
+    <a href="{{ asset('img/me-2015.jpg') }}">
+        <img src="{{ asset('img/me-2015.jpg') }}" width="200px" alt="En bild på mig">
+    </a>
+    <p>Hej! Jag heter Gabriel Rahm och jag är 23 år gammal. Jag bor och är uppvuxen i den lilla sjöstaden Vadstena i Östergötland.</p>
+    <p>Jag studerar just nu två kurspaket på distans. Utöver det är jag främst intresserad av fotboll, spelutveckling och AI.</p>
+    <p>På fritiden spelar jag datorspel och gymmar.</p>
+{% endblock %}
