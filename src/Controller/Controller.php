@@ -39,13 +39,13 @@ class Controller extends AbstractController
     #[Route('/lucky', name: "lucky")]
     public function number(): Response
     {
-        $cpu_number = random_int(1, 6);
-        $p_number = random_int(1, 6);
+        $cpuNumber = random_int(1, 6);
+        $pNumber = random_int(1, 6);
 
         $data = 
         [
-            "cpu_number" => $cpu_number, 
-            "p_number" => $p_number
+            "cpu_number" => $cpuNumber, 
+            "p_number" => $pNumber
         ];
         return $this->render('lucky.html.twig', $data);
         // return new Response(
@@ -62,7 +62,7 @@ class Controller extends AbstractController
     #[Route('/api/quote', name: "quote")]
     public function quote(): Response
     {
-        $random_index = random_int(0, 2);
+        $randomIndex = random_int(0, 2);
         $quotes = [
             "The greatest glory in living lies not in never falling, but in rising every time we fall. -Nelson Mandela",
             "It is during our darkest moments that we must focus to see the light. -Aristotle",
@@ -72,7 +72,7 @@ class Controller extends AbstractController
         date_default_timezone_set("Europe/Stockholm");
 
         $data = [
-            "quote" => $quotes[$random_index],
+            "quote" => $quotes[$randomIndex],
             "date" => date("Y-m-d", time()),
             "time" => date("H:i:s")
         ];
@@ -86,5 +86,4 @@ class Controller extends AbstractController
         //     '<html><body>Quote: '.$quotes[$random_index].'</body></html>'
         // );
     }
-
 }
