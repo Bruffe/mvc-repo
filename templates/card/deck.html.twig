@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Cards | Show deck{% endblock %}
+
+{% block body %}
+{{ block("cardlinks", "card/cardbase.html.twig") }}
+<h1>Deck</h1>
+
+<p>This page shows all the cards in the deck</p>
+
+{# <p>{{ cardString }}</p>
+<img src="{{ asset('img/cards/' ~ cardUrl) }}" width="200px" alt="Ett kort">
+<p>{{ cardUrl }}</p> #}
+
+{# <p>{{ deck.deck[1].getAsString() }}</p> #}
+
+{% for i in deck.deck %}
+{# <p>{{ i.getAsString() }}</p> #}
+<img src="{{ asset('img/cards/' ~ i.getUrl()) }}" width="80px" alt="Ett kort">
+{% endfor %}
+
+{% endblock %}

@@ -85,3 +85,7 @@ p {
     background-color: yellow;
     border-bottom: 4px solid darkslategrey;
 }
+
+.die {
+    font-size: 2em;
+}

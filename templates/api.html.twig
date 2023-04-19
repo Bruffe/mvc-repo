@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %}API | Home{% endblock %}
+
+{% block body %}
+<h1>API</h1>
+
+<ul>
+    <h4>API Links</h4>
+    {# <li><a href="{{ path('quote') }}">Dagens quote</a></li>
+    <li><a href="{{ path('api_deck') }}">Visa kortlek</a></li> #}
+    <form method="POST" action="">
+        <li>
+            <input type="submit" name="show" value="Dagens quote"
+            onClick="this.form.action='{{ path('quote') }}';">
+        </li>
+        <li>
+            <input type="submit" name="show" value="Visa kortlek"
+            onClick="this.form.action='{{ path('api_deck') }}';">
+        </li>
+        <li>
+            <input type="submit" name="shuffle" value="Blanda kortlek"
+            onClick="this.form.action='{{ path('api_deck_shuffle') }}';">
+        </li>
+        <li>
+            <input type="submit" name="draw_one" value="Dra 1 kort"
+            onClick="this.form.action='{{ path('api_deck_draw') }}';">
+        </li>
+        {# <li>
+            <input type="number" name="amount_to_draw" min="1" max="52">
+            <input type="submit" name="draw_multiple" value="Dra flera kort"
+            onClick="this.form.action='{{ path('api_deck_draw_multiple', {'amount': 'this.form.amount_to_draw.value'}) }}';">
+        </li> #}
+        <li>
+            <input type="submit" name="draw_multiple" value="Dra flera kort"
+            onClick="var amount = document.querySelector('input[name=amount_to_draw]').value; this.form.action = '{{ path('api_deck_draw_multiple', {'amount': '__amount__'}) }}'.replace('__amount__', amount);">
+            <input type="number" name="amount_to_draw" min="1" max="52" value="3">
+            {# <input type="submit" name="draw_multiple" value="Dra flera kort"
+            onClick="this.form.action='{{ path('api_deck_draw_multiple') }}';"> #}
+        </li>
+    </form>
+</ul>
+
+{% endblock %}

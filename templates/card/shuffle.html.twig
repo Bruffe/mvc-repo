@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Cards | Show shuffled deck{% endblock %}
+
+{% block body %}
+{{ block("cardlinks", "card/cardbase.html.twig") }}
+
+<h1>Shuffled deck</h1>
+
+<p>This page shows all the cards in the deck after being shuffled</p>
+
+{% for i in deck.deck %}
+<img src="{{ asset('img/cards/' ~ i.getUrl()) }}" width="80px" alt="Ett kort">
+{% endfor %}
+
+{% endblock %}

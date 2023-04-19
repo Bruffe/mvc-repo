@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Cards | Home{% endblock %}
+
+{% block body %}
+{{ block("cardlinks", "card/cardbase.html.twig") }}
+<h1>Cards</h1>
+
+<p>This is the home page for my cards</p>
+
+
+<img src="{{ asset('img/kmom02_card_classes.png') }}" width="800px" alt="UML på mina klasser">
+
+<p>Jag har klasser för Card, CardGraphic, CardHand och DeckOfCards. Card-klassen används inte just 
+nu förutom att CardGraphic (som används) ärver av den.</p>
+<p>Jag var lite osäker på hur jag skulle göra med komposition-pilen, men jag bestämde att endast 
+sätta den mellan CardGraphic och DeckOfCards, inte Card. Jag tror det är en komposition-relation 
+mellan de eftersom DeckOfCards har en array som antingen har 1-52 CardGraphic-objekt eller är tom. 
+Samma sak mellan CardGraphic och CardHand, av samma anledning.</p>
+<p>Mellan DeckOfCards och CardHand har jag satt en pil som visar aggregation eftersom ett
+DeckOfCards-objekt skickas in som argument till CardHands draw-metod för att veta vilken kortlek 
+den ska dra kort ifrån.</p>
+
+{% endblock %}

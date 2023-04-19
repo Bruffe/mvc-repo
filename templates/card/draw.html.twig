@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Cards | Show cards{% endblock %}
+
+{% block body %}
+{{ block("cardlinks", "card/cardbase.html.twig") }}
+
+<h1>Drawn cards</h1>
+
+<p>This page shows the cards you managed to draw from the deck.</p>
+<p>You drew {{ cardsDrawn }} card(s). The deck has {{ cardsLeft }} card(s) left.</p>
+
+{% for i in hand.hand %}
+<img src="{{ asset('img/cards/' ~ i.getUrl()) }}" width="80px" alt="Ett kort">
+{% endfor %}
+
+{% endblock %}

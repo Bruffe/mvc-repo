@@ -1,0 +1,12 @@
+{% block cardlinks %}
+<nav>
+    <ul>
+        <h4>Card Links</h4>
+        <li><a href="{{ path('card_start') }}">Home</a></li>
+        <li><a href="{{ path('card_deck') }}">Deck</a></li>
+        <li><a href="{{ path('card_shuffle') }}">Shuffle deck</a></li>
+        <li><a href="{{ path('card_draw') }}">Draw a card</a></li>
+        <li><a href="{{ path('card_draw_multiple', {num: 3}) }}">Draw 3 cards</a></li>
+    </ul>
+</nav>
+{% endblock %}

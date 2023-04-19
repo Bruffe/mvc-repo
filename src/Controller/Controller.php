@@ -42,9 +42,9 @@ class Controller extends AbstractController
         $cpuNumber = random_int(1, 6);
         $pNumber = random_int(1, 6);
 
-        $data = 
+        $data =
         [
-            "cpu_number" => $cpuNumber, 
+            "cpu_number" => $cpuNumber,
             "p_number" => $pNumber
         ];
         return $this->render('lucky.html.twig', $data);
@@ -77,10 +77,10 @@ class Controller extends AbstractController
             "time" => date("H:i:s")
         ];
         $response = new JsonResponse($data);
-            $response->setEncodingOptions(
-                $response->getEncodingOptions() | JSON_PRETTY_PRINT
-            );
-            return $response;
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
 
         // return new Response(
         //     '<html><body>Quote: '.$quotes[$random_index].'</body></html>'
