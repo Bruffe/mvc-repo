@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Exception;
 use App\Card\Card;
 use App\Card\CardGraphic;
 use App\Card\CardHand;
@@ -61,7 +62,7 @@ class CardGameController extends AbstractController
         }
 
         if (1 > count($deck->deck)) {
-            throw new \Exception("Not enough cards left in the deck!");
+            throw new Exception("Not enough cards left in the deck!");
         }
 
         $hand = new CardHand();
@@ -99,7 +100,7 @@ class CardGameController extends AbstractController
         // }
 
         if ($num > count($deck->deck)) {
-            throw new \Exception("Not enough cards left in the deck!");
+            throw new Exception("Not enough cards left in the deck!");
         }
 
         $hand = new CardHand();

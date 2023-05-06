@@ -15,18 +15,20 @@ class Card
         $this->cardIndex = $index;
 
         // Assign colors
+        $this->color = "clubs";
         if ($index < 13) {
             $this->color = "spades";
         } elseif ($index < 26) {
             $this->color = "hearts";
         } elseif ($index < 39) {
             $this->color = "diamonds";
-        } else {
-            $this->color = "clubs";
-        }
+        } 
+        // else {
+        //     $this->color = "clubs";
+        // }
 
         // Assign value
-        $value_list = [
+        $valueList = [
             "ace",
             "2",
             "3",
@@ -81,7 +83,7 @@ class Card
             "king"
         ];
 
-        $this->value = $value_list[$index];
+        $this->value = $valueList[$index];
     }
 
     public function getValue(): string

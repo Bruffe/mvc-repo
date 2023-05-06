@@ -16,7 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class CardGameControllerJSON extends AbstractController
 {
     #[Route("/api", name: "api")]
-    public function api(SessionInterface $session): Response
+    // public function api(SessionInterface $session): Response
+    public function api(): Response
     {
         return $this->render('api.html.twig');
     }
