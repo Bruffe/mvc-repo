@@ -55,6 +55,7 @@ class CardGameController extends AbstractController
         $deck = new DeckOfCards();
 
         if ($session->has("cardIndices")) {
+            /** @var int[] $cardIndices */
             $cardIndices = $session->get("cardIndices");
             $deck->setCards($cardIndices);
         }
@@ -84,6 +85,7 @@ class CardGameController extends AbstractController
         $deck = new DeckOfCards();
 
         if ($session->has("cardIndices")) {
+            /** @var int[] $cardIndices */
             $cardIndices = $session->get("cardIndices");
             $deck->setCards($cardIndices);
         }

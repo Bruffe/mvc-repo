@@ -4,10 +4,10 @@ namespace App\Card;
 
 class Card
 {
-    protected $value;
-    protected $color;
+    protected string $value;
+    protected string $color;
 
-    public $cardIndex;
+    public int $cardIndex;
 
     public function __construct(int $index)
     {
@@ -149,7 +149,7 @@ class Card
         return $values[$this->cardIndex];
     }
 
-    public function getColor()
+    public function getColor(): string
     {
         return $this->color;
     }

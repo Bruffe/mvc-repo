@@ -8,7 +8,10 @@ use App\Card\CardGraphic;
 class DeckOfCards
 {
     // private $deck = [];
-    public $deck = [];
+    /**
+     * @var Card[] $deck An array of Card objects representing the cards in the deck
+     */
+    public array $deck = [];
 
     public function __construct()
     {
@@ -41,6 +44,9 @@ class DeckOfCards
         shuffle($this->deck);
     }
 
+    /**
+     * @return int[] An array of ints representing the indices of cards in the deck
+     */
     public function getIndices(): array
     {
         $indices = [];
@@ -50,6 +56,9 @@ class DeckOfCards
         return $indices;
     }
 
+    /**
+     * @param int[] $indices An array of ints reprensenting the indices of cards in the deck
+     */
     public function setCards(array $indices): void
     {
         $newDeck = [];
@@ -61,6 +70,9 @@ class DeckOfCards
         $this->deck = $newDeck;
     }
 
+    /**
+     * @return array<String>
+     */
     public function getAsStrings(): array
     {
         $strings = [];
@@ -71,6 +83,9 @@ class DeckOfCards
         return $strings;
     }
 
+    /**
+     * @return array<String>
+     */
     public function getAsStringsNoAlt(): array
     {
         $strings = [];

@@ -9,7 +9,10 @@ use App\Card\DeckOfCards;
 class CardHand
 {
     // private $hand = [];
-    public $hand = [];
+    /**
+     * @var Card[] $hand An array of Card objects representing the cards in the hand.
+     */
+    public array $hand = [];
 
     public function draw(DeckOfCards $deck, int $amount): void
     {
@@ -23,6 +26,9 @@ class CardHand
         // $this->hand[] = $card;
     }
 
+    /**
+     * @return array<String>
+     */
     public function getAsStringsNoAlt(): array
     {
         $strings = [];

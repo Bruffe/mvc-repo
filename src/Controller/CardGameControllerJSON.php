@@ -62,6 +62,7 @@ class CardGameControllerJSON extends AbstractController
         $deck = new DeckOfCards();
 
         if ($session->has("cardIndices")) {
+            /** @var int[] $cardIndices */
             $cardIndices = $session->get("cardIndices");
             $deck->setCards($cardIndices);
         }
@@ -89,6 +90,7 @@ class CardGameControllerJSON extends AbstractController
         $deck = new DeckOfCards();
 
         if ($session->has("cardIndices")) {
+            /** @var int[] $cardIndices */
             $cardIndices = $session->get("cardIndices");
             $deck->setCards($cardIndices);
         }

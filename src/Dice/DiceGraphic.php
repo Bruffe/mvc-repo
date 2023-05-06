@@ -4,7 +4,10 @@ namespace App\Dice;
 
 class DiceGraphic extends Dice
 {
-    private $representation = [
+    /**
+     * @var string[] $representation An array of strings representing the cards in the deck
+     */
+    private array $representation = [
         '⚀',
         '⚁',
         '⚂',
