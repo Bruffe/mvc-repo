@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Hem | 21{% endblock %}
+
+{% block body %}
+<h1>Välkommen till 21</h1>
+{{ block("game_links", "game/game-links.html.twig") }}
+
+<p>Tjugoett är ett kortspel där man drar/får ett kort i taget för att försöka uppnå ett sammanlagt värde av 21, eller komma så nära 21 som möjligt utan att få mer än 21.</p>
+<p>Ess är värda 1 eller 14, det blir automatisk det som gynnar innehavaren mest. Nummerkorten har samma värde som valören, knekt är 11, dam är 12, kung är 13.</p>
+<p>Om spelaren lyckats uppnå kort med summan 21 vinner spelaren. Är summan större än 21 har spelare "spruckit" och förlorar. Om summan är under 21 måste spelaren välja mellan att förklara sig nöjd, eller begära ett kort till och riskera att spricka.</p>
+<p>Om spelaren förklarat sig nöjd är det bankirens tur att försöka "straffa" spelaren. När bankiren drar kort åt sig själv läggs de med framsidan uppåt. Bankiren får först se spelarens kort när bankiren själv förklarat sig nöjd. Den som har högst (utan att spricka) vinner. Bankiren vinner ifall båda fått lika värde, eller bankiren fått 21, eller ifall spelaren spricker.</p>
+<p>I denna variant är det endast en spelare som spelar mot bankiren (datorn).</p>
+{% endblock %}
