@@ -1,0 +1,45 @@
+Vilka klasser behövs?
+
+1: utöka CardGraphic med mer kod eller skapa subclass
+    - behövs det ens?
+
+2: utöka CardHand med mer kod eller skapa subclass
+    - måste kunna returnera värdet av korten i handen
+    - måste kunna avgöra värde på ess i olika lägen
+
+3: CardGame21
+    - attribut för PlayerHand och DealerHand
+    - attribut för PlayerStand och DealerStand
+    - låta datorn (dealer) spela när spelaren är nöjd
+    - "avsluta" spelet när båda är nöjda och avgör en vinnare
+
+
+
+CardGame21 (pseudocode):
+
+Function play
+    If playerStand is True
+        Call: computers turn
+    Else
+        Call: players turn
+endfunction
+
+Function players turn
+    Call: draw card to players hand
+endfunction
+
+Function computers turn
+    Call: draw card to computers hand
+endfunction
+
+Function setPlayerStand
+    Set: playerStand to True
+endfunction
+
+
+
+Text om klasserna:
+
+CardGame21 blir en ny klass som representerar en match av tjugoett. Klassen ska hålla koll på vems tur det är och hålla koll på vad spelarens och givens händer innehåller. Den ska även avgöra vem som är vinnaren när spelet är slut.
+Utöver den klassen kommer jag behöva utöka CardHand-klassen för att bland annat returnera det totala värdet av korten i handen, samt kunna avgöra ifall ett ess bör ta värdet av 1 eller 14.
+Jag tänkte att jag skulle behöva utöka CardGraphic-klassen också, t.ex för att ge korten olika värden men jag är inte helt säker på om det behövs längre.

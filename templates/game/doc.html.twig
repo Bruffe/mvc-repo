@@ -6,6 +6,41 @@
 <h1>Dokumentation för 21</h1>
 {{ block("game_links", "game/game-links.html.twig") }}
 
-<p></p>
+<h3>Flödesschema bankir</h3>
+<p>Nedan är en bild som beskriver hur datorn spelar och vem som vinner i olika lägen.</p>
+<img src="{{ asset('img/21-cpu.png') }}" width="480px" alt="En bild på hur datorn spelar">
+
+<h3>Pseudokod för CardGame21-klassen (inte komplett)</h3>
+<pre>
+<code>
+Function play
+    If playerStand is True
+        Call: computers turn
+    Else
+        Call: players turn
+endfunction
+
+Function players turn
+    Call: draw card to players hand
+endfunction
+
+Function computers turn
+    Call: draw card to computers hand
+endfunction
+
+Function setPlayerStand
+    Set: playerStand to True
+endfunction
+</code>
+</pre>
+
+<h3>Klasser som måste implementeras</h3>
+<p>CardGame21 blir en ny klass som representerar en match av tjugoett. Klassen ska hålla 
+koll på vems tur det är och hålla koll på vad spelarens och givens händer innehåller. Den 
+ska även avgöra vem som är vinnaren när spelet är slut.</p>
+<p>Utöver den klassen kommer jag behöva utöka CardHand-klassen för att bland annat returnera det 
+totala värdet av korten i handen, samt kunna avgöra ifall ett ess bör ta värdet av 1 eller 14.</p>
+<p>Jag tänkte att jag skulle behöva utöka CardGraphic-klassen också, t.ex för att ge 
+korten olika värden men jag är inte helt säker på om det behövs längre.</p>
 
 {% endblock %}
