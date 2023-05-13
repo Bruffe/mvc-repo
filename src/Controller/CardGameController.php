@@ -7,6 +7,7 @@ use App\Card\Card;
 use App\Card\CardGraphic;
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
+use App\Game\CardGame21;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -128,5 +129,63 @@ class CardGameController extends AbstractController
     public function gameDoc(): Response
     {
         return $this->render('game/doc.html.twig');
+    }
+
+    #[Route("/game/play", name: "game_play")]
+    public function gamePlay(SessionInterface $session): Response
+    {
+        if ($session->has("cardGame")) {
+            $cardGame = $session->get("cardGame");
+            $session->set("cardGame", $cardGame);
+        } else {
+            $cardGame = new CardGame21();
+            $session->set("cardGame", $cardGame);
+        }
+        
+        $data = [
+            "testBool" => true,
+            // "playerCards" => cardGame->playerCards->hand
+            "cardGame" => $cardGame,
+            "playerScore" => array_sum($cardGame->getPlayerScore()),
+            "dealerScore" => array_sum($cardGame->getDealerScore()),
+            "playerPointArray" => $cardGame->getPlayerScore()
+        ];
+
+        return $this->render('game/play.html.twig', $data);
+    }
+
+    #[Route("/game/draw", name: "game_draw")]
+    public function gameDraw(SessionInterface $session): Response
+    {
+        if ($session->has("cardGame")) {
+            $cardGame = $session->get("cardGame");
+            // $cardGame->playerDraw();
+            $cardGame->play();
+            $session->set("cardGame", $cardGame);
+        }
+
+        return $this->redirectToRoute('game_play');
+    }
+
+    #[Route("/game/stand", name: "game_stand")]
+    public function gameStand(SessionInterface $session): Response
+    {
+        if ($session->has("cardGame")) {
+            $cardGame = $session->get("cardGame");
+            $cardGame->setPlayerStand();
+            $session->set("cardGame", $cardGame);
+        }
+
+        return $this->redirectToRoute('game_play');
+    }
+
+    #[Route("/game/restart", name: "game_restart")]
+    public function gameRestart(SessionInterface $session): Response
+    {
+        if ($session->has("cardGame")) {
+            $session->remove("cardGame");
+        }
+
+        return $this->redirectToRoute('game_play');
     }
 }

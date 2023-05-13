@@ -11,4 +11,10 @@
 <p>Om spelaren är den enda som lyckats uppnå kort med summan 21 vinner spelaren. Är summan större än 21 har spelare "spruckit" och förlorar. Om summan är under 21 måste spelaren välja mellan att förklara sig nöjd, eller begära ett kort till och riskera att spricka.</p>
 <p>Om spelaren förklarat sig nöjd är det bankirens tur att försöka "straffa" spelaren. När bankiren drar kort åt sig själv läggs de med framsidan uppåt. Bankiren får först se spelarens kort när bankiren själv förklarat sig nöjd. Den som har högst (utan att spricka) vinner. Bankiren vinner ifall båda fått lika värde, eller bankiren fått 21, eller ifall spelaren spricker.</p>
 <p>I denna variant är det endast en spelare som spelar mot bankiren (datorn).</p>
+
+<form method="POST" action="">
+    <input type="submit" name="show" value="Klicka här för att starta nytt spel"
+    onClick="this.form.action='{{ path('game_play') }}';">
+</form>
+
 {% endblock %}

@@ -56,4 +56,44 @@ class CardHand
     //     }
     //     return $values;
     // }
+
+    public function getPoints(): array
+    {
+        // $points = 0;
+        $pointArray = [];
+        foreach ($this->hand as $card) {
+            // switch ($card->value) {
+            switch ($card->getValue()) {
+                case "ace":
+                    // $points += 14
+                    $pointArray[] = 14;
+                    break;
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                case "10":
+                    // $pointArray[] = (int) $card->value;
+                    $pointArray[] = (int) $card->getValue();
+                    break;
+                case "jack":
+                    $pointArray[] = 11;
+                    break;
+                case "queen":
+                    $pointArray[] = 12;
+                    break;
+                case "king":
+                    $pointArray[] = 13;
+                    break;
+                default:
+                    break;
+            }
+        }
+        // return $points;
+        return $pointArray;
+    }
 }

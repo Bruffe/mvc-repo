@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Spela | 21{% endblock %}
+
+{% block body %}
+<h1>Spela 21</h1>
+{{ block("game_links", "game/game-links.html.twig") }}
+
+{% if cardGame.decideWinner == "player" %}
+<h2>Spelaren vann!</h2>
+{% elseif cardGame.decideWinner == "dealer" %}
+<h2>Datorn vann!</h2>
+{% endif %}
+
+<form method="POST" action="">
+    {% if not cardGame.getPlayerStand %}
+    <input type="submit" name="show" value="Dra ett kort"
+    onClick="this.form.action='{{ path('game_draw') }}';">
+
+    <input type="submit" name="show" value="Stanna"
+    onClick="this.form.action='{{ path('game_stand') }}';">
+    {% elseif cardGame.getPlayerStand and not cardGame.getDealerStand %}
+    <input type="submit" name="show" value="Låt datorn spela"
+    onClick="this.form.action='{{ path('game_draw') }}';">
+    {% endif %}
+    <input type="submit" name="show" value="Starta om spelet"
+    onClick="this.form.action='{{ path('game_restart') }}';">
+</form>
+
+<h3>Din poäng: {{ playerScore }}</h3>
+{% for i in cardGame.getPlayerHand %}
+<figure>
+    <img src="{{ asset('img/cards/' ~ i.getUrl()) }}" width="64px" alt="Ett kort">
+    {% if cardGame.getPlayerScore is not empty %}
+    <figcaption>{{ cardGame.getPlayerScore[loop.index0] }}</figcaption>
+    {# <figcaption>{{ cardGame.getPlayerScore[i] }}</figcaption> #}
+    {# <figcaption>{{ playerPointArray[i] }}</figcaption> #}
+    {% endif %}
+</figure>
+{% endfor %}
+
+{# <h3>Din poäng: {{ playerScore }}</h3>
+{% for i in cardGame.getPlayerHand %}
+<img src="{{ asset('img/cards/' ~ i.getUrl()) }}" width="64px" alt="Ett kort">
+{% endfor %} #}
+
+<h3>Datorns poäng: {{ dealerScore }}</h3>
+{% for i in cardGame.getDealerHand %}
+<img src="{{ asset('img/cards/' ~ i.getUrl()) }}" width="64px" alt="Ett kort">
+{% endfor %}
+
+{% endblock %}
