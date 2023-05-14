@@ -93,6 +93,14 @@ class CardHand
                     break;
             }
         }
+
+        if (array_sum($pointArray) > 21) {
+            for ($i = 0; $i < count($pointArray); $i++) {
+                if (array_sum($pointArray) > 21 && $pointArray[$i] == 14) {
+                    $pointArray[$i] = 1;
+                }
+            }
+        }
         // return $points;
         return $pointArray;
     }

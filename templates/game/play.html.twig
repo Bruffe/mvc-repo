@@ -28,16 +28,16 @@
 </form>
 
 <h3>Din poäng: {{ playerScore }}</h3>
+<div class="player-cards">
 {% for i in cardGame.getPlayerHand %}
 <figure>
     <img src="{{ asset('img/cards/' ~ i.getUrl()) }}" width="64px" alt="Ett kort">
     {% if cardGame.getPlayerScore is not empty %}
     <figcaption>{{ cardGame.getPlayerScore[loop.index0] }}</figcaption>
-    {# <figcaption>{{ cardGame.getPlayerScore[i] }}</figcaption> #}
-    {# <figcaption>{{ playerPointArray[i] }}</figcaption> #}
     {% endif %}
 </figure>
 {% endfor %}
+</div>
 
 {# <h3>Din poäng: {{ playerScore }}</h3>
 {% for i in cardGame.getPlayerHand %}
@@ -45,8 +45,15 @@
 {% endfor %} #}
 
 <h3>Datorns poäng: {{ dealerScore }}</h3>
+<div class="player-cards">
 {% for i in cardGame.getDealerHand %}
-<img src="{{ asset('img/cards/' ~ i.getUrl()) }}" width="64px" alt="Ett kort">
+<figure>
+    <img src="{{ asset('img/cards/' ~ i.getUrl()) }}" width="64px" alt="Ett kort">
+    {% if cardGame.getDealerScore is not empty %}
+    <figcaption>{{ cardGame.getDealerScore[loop.index0] }}</figcaption>
+    {% endif %}
+</figure>
 {% endfor %}
+</div>
 
 {% endblock %}
