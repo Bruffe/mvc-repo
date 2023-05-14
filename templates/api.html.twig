@@ -38,6 +38,10 @@
             {# <input type="submit" name="draw_multiple" value="Dra flera kort"
             onClick="this.form.action='{{ path('api_deck_draw_multiple') }}';"> #}
         </li>
+        <li>
+            <input type="submit" name="api_game" value="21: aktuell ställning"
+            onClick="this.form.action='{{ path('api_game') }}';">
+        </li>
     </form>
 </ul>
 

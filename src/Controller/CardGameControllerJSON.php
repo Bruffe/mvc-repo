@@ -6,6 +6,7 @@ use App\Card\Card;
 use App\Card\CardGraphic;
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
+use App\Game\CardGame21;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -106,6 +107,31 @@ class CardGameControllerJSON extends AbstractController
             "hand" => $hand->getAsStringsNoAlt(),
             "cardsDrawn" => count($hand->hand)
         ];
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+
+    #[Route('/api/game', name: "api_game")]
+    public function apiGame(SessionInterface $session): Response
+    {
+        if ($session->has("cardGame")) {
+            $cardGame = $session->get("cardGame");
+        } else {
+            $cardGame = new CardGame21();
+            $session->set("cardGame", $cardGame);
+        }
+
+        $data = [
+            "playerCardValues" => $cardGame->getPlayerScore(),
+            "dealerCardValues" => $cardGame->getDealerScore(),
+            "playerScore" => array_sum($cardGame->getPlayerScore()),
+            "dealerScore" => array_sum($cardGame->getDealerScore()),
+            "winner" => $cardGame->decideWinner()
+        ];
+
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
