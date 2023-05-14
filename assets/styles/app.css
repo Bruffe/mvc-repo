@@ -11,7 +11,8 @@ body {
 
 main {
     margin: 0 auto;
-    max-width: 400px;
+    /* max-width: 400px; */
+    max-width: 800px;
 }
 
 /* h1, h2, h3, h4, h5, h6, p {
@@ -88,4 +89,15 @@ p {
 
 .die {
     font-size: 2em;
+}
+
+.player-cards {
+    display: inline-block;
+}
+
+.player-cards figure {
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
 }

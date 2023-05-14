@@ -7,9 +7,9 @@
 {{ block("game_links", "game/game-links.html.twig") }}
 
 {% if cardGame.decideWinner == "player" %}
-<h2>Spelaren vann!</h2>
+<h2 style="background-color: green;">Spelaren vann!</h2>
 {% elseif cardGame.decideWinner == "dealer" %}
-<h2>Datorn vann!</h2>
+<h2 style="background-color: red;">Datorn vann!</h2>
 {% endif %}
 
 <form method="POST" action="">
