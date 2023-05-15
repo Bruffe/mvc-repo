@@ -39,11 +39,6 @@
 {% endfor %}
 </div>
 
-{# <h3>Din poäng: {{ playerScore }}</h3>
-{% for i in cardGame.getPlayerHand %}
-<img src="{{ asset('img/cards/' ~ i.getUrl()) }}" width="64px" alt="Ett kort">
-{% endfor %} #}
-
 <h3>Datorns poäng: {{ dealerScore }}</h3>
 <div class="player-cards">
 {% for i in cardGame.getDealerHand %}

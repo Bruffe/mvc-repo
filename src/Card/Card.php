@@ -22,7 +22,7 @@ class Card
             $this->color = "hearts";
         } elseif ($index < 39) {
             $this->color = "diamonds";
-        } 
+        }
         // else {
         //     $this->color = "clubs";
         // }

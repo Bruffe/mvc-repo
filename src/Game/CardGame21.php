@@ -7,15 +7,9 @@ use App\Card\DeckOfCards;
 
 class CardGame21
 {
-    // protected bool $playerStand = false;
-    // protected bool $dealerStand = false;
-
-    // protected $playerHand = new CardHand();
-    // protected $dealerHand = new CardHand();
-
     protected bool $playerStand;
     protected bool $dealerStand;
-    
+
     protected CardHand $playerHand;
     protected CardHand $dealerHand;
 
@@ -29,33 +23,34 @@ class CardGame21
         $this->dealerHand = new CardHand();
         $this->deck = new DeckOfCards();
     }
-    
+
     public function play(): void
     {
         if ($this->playerStand) {
             // dealers turn
             $this->dealerDraw();
-        } else {
-            // players turn
-            $this->playerDraw();
+            return;
         }
+
+        // players turn
+        $this->playerDraw();
     }
 
-    public function playerDraw()
+    public function playerDraw(): void
     {
         $this->playerHand->draw($this->deck, 1);
     }
 
-    public function dealerDraw()
+    public function dealerDraw(): void
     {
         // recursion
         $this->dealerHand->draw($this->deck, 1);
         if (array_sum($this->getDealerScore()) > 13) {
             $this->setDealerStand();
-            // $this->decideWinner();
-        } else {
-            $this->dealerDraw();
+            return;
         }
+
+        $this->dealerDraw();
     }
 
     public function getPlayerHand(): array
@@ -108,20 +103,16 @@ class CardGame21
 
         $playerPoints = array_sum($this->getPlayerScore());
         $dealerPoints = array_sum($this->getDealerScore());
+        $winner = "dealer";
         if ($dealerPoints > 21) {
+            $winner = "player";
             if ($playerPoints > 21) {
                 $winner = "dealer";
-            } else {
-                $winner = "player";
             }
-        } else {
-            if ($playerPoints > 21) {
-                $winner = "dealer";
-            } elseif ($playerPoints > $dealerPoints) {
-                $winner = "player";
-            } else {
-                $winner = "dealer";
-            }
+        } elseif ($playerPoints > 21) {
+            $winner = "dealer";
+        } elseif ($playerPoints > $dealerPoints) {
+            $winner = "player";
         }
         return $winner;
     }

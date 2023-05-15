@@ -17,7 +17,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class CardGameControllerJSON extends AbstractController
 {
     #[Route("/api", name: "api")]
-    // public function api(SessionInterface $session): Response
     public function api(): Response
     {
         return $this->render('api.html.twig');
@@ -117,11 +116,10 @@ class CardGameControllerJSON extends AbstractController
     #[Route('/api/game', name: "api_game")]
     public function apiGame(SessionInterface $session): Response
     {
+        $cardGame = new CardGame21();
+
         if ($session->has("cardGame")) {
             $cardGame = $session->get("cardGame");
-        } else {
-            $cardGame = new CardGame21();
-            $session->set("cardGame", $cardGame);
         }
 
         $data = [

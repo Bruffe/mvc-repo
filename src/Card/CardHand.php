@@ -8,7 +8,6 @@ use App\Card\DeckOfCards;
 
 class CardHand
 {
-    // private $hand = [];
     /**
      * @var Card[] $hand An array of Card objects representing the cards in the hand.
      */
@@ -39,33 +38,13 @@ class CardHand
         return $strings;
     }
 
-    // public function getUrls(): array
-    // {
-    //     $urls = [];
-    //     foreach ($this->hand as $card) {
-    //         $urls[] = $card->getUrl();
-    //     }
-    //     return $urls;
-    // }
-
-    // public function getString(): array
-    // {
-    //     $values = [];
-    //     foreach ($this->hand as $card) {
-    //         $values[] = $card->getAsString();
-    //     }
-    //     return $values;
-    // }
-
     public function getPoints(): array
     {
-        // $points = 0;
+        /** @var int[] $pointArray */
         $pointArray = [];
         foreach ($this->hand as $card) {
-            // switch ($card->value) {
             switch ($card->getValue()) {
                 case "ace":
-                    // $points += 14
                     $pointArray[] = 14;
                     break;
                 case "2":
@@ -77,7 +56,6 @@ class CardHand
                 case "8":
                 case "9":
                 case "10":
-                    // $pointArray[] = (int) $card->value;
                     $pointArray[] = (int) $card->getValue();
                     break;
                 case "jack":
@@ -94,14 +72,15 @@ class CardHand
             }
         }
 
+        $totalPoints = count($pointArray);
         if (array_sum($pointArray) > 21) {
-            for ($i = 0; $i < count($pointArray); $i++) {
+            for ($i = 0; $i < $totalPoints; $i++) {
                 if (array_sum($pointArray) > 21 && $pointArray[$i] == 14) {
                     $pointArray[$i] = 1;
                 }
             }
         }
-        // return $points;
+
         return $pointArray;
     }
 }

@@ -74,7 +74,6 @@ class CardGameController extends AbstractController
         $data = [
             "cardsLeft" => count($deck->deck),
             "hand" => $hand,
-            // "hand" => $deck,
             "cardsDrawn" => count($hand->hand)
         ];
 
@@ -92,14 +91,6 @@ class CardGameController extends AbstractController
             $deck->setCards($cardIndices);
         }
 
-        // $cardIndices = $session->get("cardIndices");
-
-        // $deck = new DeckOfCards();
-        // if ($cardIndices)
-        // {
-        //     $deck->setCards($cardIndices);
-        // }
-
         if ($num > count($deck->deck)) {
             throw new Exception("Not enough cards left in the deck!");
         }
@@ -112,7 +103,6 @@ class CardGameController extends AbstractController
         $data = [
             "cardsLeft" => count($deck->deck),
             "hand" => $hand,
-            // "hand" => $deck,
             "cardsDrawn" => count($hand->hand)
         ];
 
@@ -134,17 +124,14 @@ class CardGameController extends AbstractController
     #[Route("/game/play", name: "game_play")]
     public function gamePlay(SessionInterface $session): Response
     {
+        $cardGame = new CardGame21();
+
         if ($session->has("cardGame")) {
             $cardGame = $session->get("cardGame");
-            $session->set("cardGame", $cardGame);
-        } else {
-            $cardGame = new CardGame21();
-            $session->set("cardGame", $cardGame);
         }
-        
+        $session->set("cardGame", $cardGame);
+
         $data = [
-            "testBool" => true,
-            // "playerCards" => cardGame->playerCards->hand
             "cardGame" => $cardGame,
             "playerScore" => array_sum($cardGame->getPlayerScore()),
             "dealerScore" => array_sum($cardGame->getDealerScore()),
@@ -159,7 +146,6 @@ class CardGameController extends AbstractController
     {
         if ($session->has("cardGame")) {
             $cardGame = $session->get("cardGame");
-            // $cardGame->playerDraw();
             $cardGame->play();
             $session->set("cardGame", $cardGame);
         }
