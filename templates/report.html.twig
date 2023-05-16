@@ -47,7 +47,34 @@
     och sedan använda den som argument till en metod på min DeckOfCards för att återskapa kortleken.</p>
 
     <h2 id="kmom03">kmom03</h2>
-    <p>Redovisningstext här..</p>
+    <p>Detta kursmoment har det handlat om att fortsätta i Symfony i PHP och skapa ett kortspel. Jag tyckte det var ganska 
+    svårt att skapa flödesdiagram och pseudokod för uppgiften, delvis för att jag knappt gjort det innan. Däremot tyckte 
+    jag att det var väldigt skönt att kunna använda de som hjälpmedel sen när jag började programmera spelet på riktigt. 
+    Kortspelet jag gjorde var Tjugoett (som även rekommenderades). Jag gjorde några få ändringar och egna tolkningar när 
+    jag tyckte reglerna var otydliga.</p>
+    <p>Jag löste uppgiften genom att skapa en klass som jag döpte till CardGame21. Den klassen har attribut för spelarens 
+    och bankirens CardHand-objekt, ett DeckOfCards-objekt, samt varsin bool som avgör ifall spelaren och bankiren har 
+    stannat/nöjt sig. Med hjälp av dessa attribut kan jag styra vems tur det är. Med hjälp av decideWinner-metoden kan jag 
+    visa upp i vyn vem som vunnit när både spelaren och bankirer har nöjt sig. Jag skapade fyra routes (om man räknar utan API/JSON), 
+    det första är routen "game_play" där spelet tar plats, det andra är för att dra ett kort och sedan redirect till "game_play" 
+    (även samma route för att låta datorn dra sina kort då jag anropar play-metoden i CardGame21-klassen och den där inne 
+    hanterar vems tur det är). Min tredje route är för att spelaren ska kunna ange sig nöjd, sen blir det redirect till 
+    "game_play". Fjärde routen är för att ta bort session-variabel och redirect för att kunna starta om spelet.</p>
+    <p>Utöver den klassen byggde jag vidare på min CardHand-klass med en metod som returnerade antalet poäng korten i handen 
+    är värda. Den metoden hanterade även essets "dynamiska" värde, alltså ifall ett ess ska vara värt 1 eller 14. Jag tyckte 
+    reglerna var lite otydliga när det gällde ess, så jag gjorde bara att ifall man börjar med att dra ett ess så är handen 
+    14. Om man sedan drar en kung, så blir esset 1 eftersom handen är värd mer än 21. Alltså blir handen då 1 + 13 = 14, 
+    istället för 14 + 13 = 27. I min variant börjar alltså essen alltid som 14 men ändrar värde till 1 automatiskt när det 
+    passar innehavaren. Jag hade kunnat göra istället så att spelaren fick välja om esset ska vara 1 eller 14 när kortet 
+    dras, men jag var lite osäker som sagt och gjorde en egen tolkning. Jag är faktiskt väldigt nöjd med allt inom min 
+    implementation förutom styling, det kunde gärna sett lite roligare/finare ut men det är som det är.</p>
+    <p>Jag tycker det känns bra att programmera i Symfony. Det känns väldigt likt det jag fick göra i Flask i senaste 
+    Python-kursen. PHP är inte min favorit precis när det kommer till programmeringsspråk men detta kursmoment har gått 
+    väldigt bra faktiskt, så det känns lite bättre nu iallafall.</p>
+    <p>Min TIL detta kursmoment är hur man skapar flödesdiagram och pseudokod, tidigare jag hade inte koll på 
+    rekommenderad stil av pseudokod. Nu känner jag att jag blivit lite bättre på de sakerna iallafall, samt 
+    lite bättre på att skapa egna klasser. Denna vecka har jag inte haft några problem med "->" istället 
+    för "." mellan objekt och metod/attribut, så det är ett framsteg.</p>
 
     <h2 id="kmom04">kmom04</h2>
     <p>Redovisningstext här..</p>
