@@ -5,6 +5,12 @@ namespace App\Card;
 use App\Card\Card;
 use App\Card\CardGraphic;
 
+/**
+ * Class DeckOfCards
+ * 
+ * This class represents a deck of cards.
+ */
+
 class DeckOfCards
 {
     // private $deck = [];
@@ -13,6 +19,11 @@ class DeckOfCards
      */
     public array $deck = [];
 
+    /**
+     * DeckOfCards constructor.
+     * 
+     * The constructor loops 52 times to create 52 different cards that fills the deck-array.
+     */
     public function __construct()
     {
         foreach(range(0, 51) as $i) {
@@ -20,25 +31,34 @@ class DeckOfCards
         }
     }
 
+    /**
+     * Add
+     * 
+     * Add a card to the deck-array.
+     * @param CardGraphic $card The card to add.
+     */
     public function add(CardGraphic $card): void
     {
         $this->deck[] = $card;
     }
 
+    /**
+     * Remove
+     * 
+     * Remove a card from the deck-array.
+     * @param int $index The index of the deck-array to be removed.
+     */
     public function remove(int $index): void
     {
         unset($this->deck[$index]);
         // array_splice($this->deck, $index, $index);
     }
 
-    // public function draw(int $amount): void
-    // {
-    //     // Loopa igenom antal gånger och ta bort från deck-array?
-    //     foreach ($this->deck as $card) {
-    //         $card->roll();
-    //     }
-    // }
-
+    /**
+     * Shuffle
+     * 
+     * Shuffle the deck-array.
+     */
     public function shuffle(): void
     {
         // $this->deck = shuffle($this->deck);
@@ -46,6 +66,9 @@ class DeckOfCards
     }
 
     /**
+     * Get Indices
+     * 
+     * Get indices of the cards in the deck-array.
      * @return int[] An array of ints representing the indices of cards in the deck
      */
     public function getIndices(): array
@@ -58,6 +81,9 @@ class DeckOfCards
     }
 
     /**
+     * Set Cards
+     * 
+     * Replace the deck-array with a new array.
      * @param int[] $indices An array of ints reprensenting the indices of cards in the deck
      */
     public function setCards(array $indices): void
@@ -72,6 +98,9 @@ class DeckOfCards
     }
 
     /**
+     * Get As Strings
+     * 
+     * Get the cards' (in the deck) string representation.
      * @return array<String>
      */
     public function getAsStrings(): array
@@ -85,6 +114,9 @@ class DeckOfCards
     }
 
     /**
+     * Get As String No Alt
+     * 
+     * Get the cards' (in the deck) string representation. Uses no "Alt code" characters, only letters.
      * @return array<String>
      */
     public function getAsStringsNoAlt(): array

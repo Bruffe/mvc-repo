@@ -83,47 +83,47 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Card\\DeckOfCards",
             "name": "DeckOfCards",
-            "summary": "",
+            "summary": "Class\u0020DeckOfCards",
             "url": "classes/App-Card-DeckOfCards.html"
         },                {
             "fqsen": "\\App\\Card\\DeckOfCards\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "DeckOfCards\u0020constructor.",
             "url": "classes/App-Card-DeckOfCards.html#method___construct"
         },                {
             "fqsen": "\\App\\Card\\DeckOfCards\u003A\u003Aadd\u0028\u0029",
             "name": "add",
-            "summary": "",
+            "summary": "Add",
             "url": "classes/App-Card-DeckOfCards.html#method_add"
         },                {
             "fqsen": "\\App\\Card\\DeckOfCards\u003A\u003Aremove\u0028\u0029",
             "name": "remove",
-            "summary": "",
+            "summary": "Remove",
             "url": "classes/App-Card-DeckOfCards.html#method_remove"
         },                {
             "fqsen": "\\App\\Card\\DeckOfCards\u003A\u003Ashuffle\u0028\u0029",
             "name": "shuffle",
-            "summary": "",
+            "summary": "Shuffle",
             "url": "classes/App-Card-DeckOfCards.html#method_shuffle"
         },                {
             "fqsen": "\\App\\Card\\DeckOfCards\u003A\u003AgetIndices\u0028\u0029",
             "name": "getIndices",
-            "summary": "",
+            "summary": "Get\u0020Indices",
             "url": "classes/App-Card-DeckOfCards.html#method_getIndices"
         },                {
             "fqsen": "\\App\\Card\\DeckOfCards\u003A\u003AsetCards\u0028\u0029",
             "name": "setCards",
-            "summary": "",
+            "summary": "Set\u0020Cards",
             "url": "classes/App-Card-DeckOfCards.html#method_setCards"
         },                {
             "fqsen": "\\App\\Card\\DeckOfCards\u003A\u003AgetAsStrings\u0028\u0029",
             "name": "getAsStrings",
-            "summary": "",
+            "summary": "Get\u0020As\u0020Strings",
             "url": "classes/App-Card-DeckOfCards.html#method_getAsStrings"
         },                {
             "fqsen": "\\App\\Card\\DeckOfCards\u003A\u003AgetAsStringsNoAlt\u0028\u0029",
             "name": "getAsStringsNoAlt",
-            "summary": "",
+            "summary": "Get\u0020As\u0020String\u0020No\u0020Alt",
             "url": "classes/App-Card-DeckOfCards.html#method_getAsStringsNoAlt"
         },                {
             "fqsen": "\\App\\Card\\DeckOfCards\u003A\u003A\u0024deck",
