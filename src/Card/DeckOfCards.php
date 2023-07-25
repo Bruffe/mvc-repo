@@ -27,7 +27,8 @@ class DeckOfCards
 
     public function remove(int $index): void
     {
-        array_splice($this->deck, $index, $index);
+        unset($this->deck[$index]);
+        // array_splice($this->deck, $index, $index);
     }
 
     // public function draw(int $amount): void

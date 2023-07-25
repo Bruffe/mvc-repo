@@ -10,8 +10,8 @@ use PHPUnit\Framework\TestCase;
 class CardTest extends TestCase
 {
     /**
-     * Construct object and verify that the object has the expected
-     * properties, using argument.
+     * Construct object using argument, and verify that the object
+     * is of the expected type.
      */
     public function testCreateCard()
     {
@@ -20,7 +20,7 @@ class CardTest extends TestCase
     }
 
     /**
-     * Construct object using arguments, and verify that the object returns
+     * Construct object using argument, and verify that the object returns
      * the correct string-representation.
      */
     public function testGetAsString()
@@ -33,7 +33,7 @@ class CardTest extends TestCase
     }
 
     /**
-     * Construct object using arguments, and verify that the object returns
+     * Construct object using argument, and verify that the object returns
      * the correct value.
      */
     public function testGetValue()
@@ -46,7 +46,7 @@ class CardTest extends TestCase
     }
 
     /**
-     * Construct object using arguments, and verify that the object returns
+     * Construct object using argument, and verify that the object returns
      * the correct color.
      */
     public function testGetColor()

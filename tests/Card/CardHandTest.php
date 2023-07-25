@@ -10,8 +10,8 @@ use PHPUnit\Framework\TestCase;
 class CardHandTest extends TestCase
 {
     /**
-     * Construct object and verify that the object has the expected
-     * properties, using argument.
+     * Construct object without argument, and verify that the object
+     * is of the expected type.
      */
     public function testCreateCardHand()
     {
@@ -21,8 +21,8 @@ class CardHandTest extends TestCase
     }
 
     /**
-     * Construct object using argument, and verify that the object
-     * returns the expected filename.
+     * Construct object without argument, draw cards from deck object 
+     * and verify that the hand contains the right amount of cards.
      */
     public function testDrawCard()
     {
@@ -39,8 +39,8 @@ class CardHandTest extends TestCase
     }
 
     /**
-     * Construct object using argument, draw cards and verify that 
-     * the object returns the expected cards' string-representations.
+     * Construct object without argument, draw cards from deck object and 
+     * verify that the object returns the expected cards' string-representations.
      */
     public function testGetHandCardStrings()
     {
@@ -63,8 +63,8 @@ class CardHandTest extends TestCase
     }
 
     /**
-     * Construct object using argument, draw cards and verify that 
-     * the object returns point within the expected range.
+     * Construct object without argument, draw cards from deck object and 
+     * verify that the object returns a score within the expected range.
      */
     public function testGetHandScore()
     {

@@ -10,8 +10,8 @@ use PHPUnit\Framework\TestCase;
 class CardGraphicTest extends TestCase
 {
     /**
-     * Construct object and verify that the object has the expected
-     * properties, using argument.
+     * Construct object using argument, and verify that the object
+     * is of the expected type.
      */
     public function testCreateCardGraphic()
     {
