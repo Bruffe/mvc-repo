@@ -71,14 +71,14 @@ class CardHandTest extends TestCase
         $deck = new DeckOfCards();
         $hand = new CardHand();
 
-        $cardAmount = 24;
+        $cardAmount = 52;
         $hand->draw($deck, $cardAmount);
 
-        $res = array_sum($hand->getPoints());
-        
-        $exp1 = 1 * $cardAmount;
-        $exp2 = 14 * $cardAmount;
+        $points = $hand->getPoints();
+        $this->assertIsArray($points);
+        $res = array_sum($points);
 
-        $this->assertTrue($exp1 <= $res || $exp2 >= $res);
+        $exp = 52 * 7;
+        $this->assertEquals($exp, $res);
     }
 }
