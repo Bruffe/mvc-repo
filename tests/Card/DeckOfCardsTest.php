@@ -86,7 +86,6 @@ class DeckOfCardsTest extends TestCase
     {
         $deck = new DeckOfCards();
 
-        $cards = $deck->deck;
         $indices = [3, 2, 1, 0];
         $deck->setCards($indices);
 

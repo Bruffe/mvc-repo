@@ -7,7 +7,7 @@ use App\Card\CardGraphic;
 
 /**
  * Class DeckOfCards
- * 
+ *
  * This class represents a deck of cards.
  */
 
@@ -15,13 +15,13 @@ class DeckOfCards
 {
     // private $deck = [];
     /**
-     * @var Card[] $deck An array of Card objects representing the cards in the deck
+     * @var CardGraphic[] $deck An array of CardGraphic objects representing the cards in the deck
      */
     public array $deck = [];
 
     /**
      * DeckOfCards constructor.
-     * 
+     *
      * The constructor loops 52 times to create 52 different cards that fills the deck-array.
      */
     public function __construct()
@@ -33,7 +33,7 @@ class DeckOfCards
 
     /**
      * Add
-     * 
+     *
      * Add a card to the deck-array.
      * @param CardGraphic $card The card to add.
      */
@@ -44,7 +44,7 @@ class DeckOfCards
 
     /**
      * Remove
-     * 
+     *
      * Remove a card from the deck-array.
      * @param int $index The index of the deck-array to be removed.
      */
@@ -56,7 +56,7 @@ class DeckOfCards
 
     /**
      * Shuffle
-     * 
+     *
      * Shuffle the deck-array.
      */
     public function shuffle(): void
@@ -67,7 +67,7 @@ class DeckOfCards
 
     /**
      * Get Indices
-     * 
+     *
      * Get indices of the cards in the deck-array.
      * @return int[] An array of ints representing the indices of cards in the deck
      */
@@ -82,7 +82,7 @@ class DeckOfCards
 
     /**
      * Set Cards
-     * 
+     *
      * Replace the deck-array with a new array.
      * @param int[] $indices An array of ints reprensenting the indices of cards in the deck
      */
@@ -99,7 +99,7 @@ class DeckOfCards
 
     /**
      * Get As Strings
-     * 
+     *
      * Get the cards' (in the deck) string representation.
      * @return array<String>
      */
@@ -115,7 +115,7 @@ class DeckOfCards
 
     /**
      * Get As String No Alt
-     * 
+     *
      * Get the cards' (in the deck) string representation. Uses no "Alt code" characters, only letters.
      * @return array<String>
      */

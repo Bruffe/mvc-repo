@@ -74,7 +74,7 @@ class CardHandTest extends TestCase
         $cardAmount = 24;
         $hand->draw($deck, $cardAmount);
 
-        $res = $hand->getPoints();
+        $res = array_sum($hand->getPoints());
         
         $exp1 = 1 * $cardAmount;
         $exp2 = 14 * $cardAmount;
