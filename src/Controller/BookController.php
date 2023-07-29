@@ -18,4 +18,32 @@ class BookController extends AbstractController
     {
         return $this->render('library/home.html.twig');
     }
+
+    #[Route('/library/create', name: 'lib_create_form', methods: ['GET'])]
+    public function createBookForm(): Response 
+    {
+        return $this->render('library/create.html.twig');
+    }
+    
+    #[Route('/library/create', name: 'lib_create', methods: ['POST'])]
+    public function createBook(
+        Request $request,
+        ManagerRegistry $doctrine
+    ): Response {
+        $entityManager = $doctrine->getManager();
+
+        $title = $request->get('title');
+        $isbn = $request->get('isbn');
+        $author = $request->get('author');
+
+        $book = new Book();
+        $book->setTitle($title);
+        $book->setIsbn($isbn);
+        $book->setAuthor($author);
+
+        $entityManager->persist($book);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('lib_show_all');
+    }
 }
