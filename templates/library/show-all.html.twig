@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Hem | Bibliotek{% endblock %}
+
+{% block body %}
+{{ block("liblinks", "library/lib-links.html.twig") }}
+<h1>Gabriel's bibliotek</h1>
+
+
+{% if books %}
+<p>Här är bibliotekets böcker.</p>
+<table>
+    <thead>
+        <tr>
+            <th>Titel</th>
+            <th>Författare</th>
+            <th>ISBN-nummer</th>
+            <th>Ändra</th>
+            <th>Ta bort</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for book in books %}
+        <tr>
+            <td>
+                <a href="show/{{ book.id }}">
+                {{ book.title }}
+                </a>
+            </td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.isbn }}</td>
+            <td><a href="edit/{{ book.id }}">Redigera info</a></td>
+            <td><a href="remove/{{ book.id }}">Ta bort bok</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% endblock %}

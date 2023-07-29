@@ -46,4 +46,31 @@ class BookController extends AbstractController
 
         return $this->redirectToRoute('lib_show_all');
     }
+
+    #[Route('/library/show', name: 'lib_show_all')]
+    public function showAllBooks(
+        BookRepository $bookRepository
+    ): Response {
+        $books = $bookRepository->findAll();
+
+        $data = [
+            "books" => $books
+        ];
+
+        return $this->render('library/show-all.html.twig', $data);
+    }
+
+    #[Route('/library/show/{id}', name: 'library_show_one')]
+    public function showOneBook(
+        BookRepository $bookRepository,
+        int $id
+    ): Response {
+        $book = $bookRepository->find($id);
+
+        $data = [
+            "book" => $book
+        ];
+
+        return $this->render('library/show-one.html.twig', $data);
+    }
 }
