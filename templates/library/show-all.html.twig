@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Hem | Bibliotek{% endblock %}
+{% block title %}Visa böcker | Bibliotek{% endblock %}
 
 {% block body %}
 {{ block("liblinks", "library/lib-links.html.twig") }}
@@ -30,7 +30,7 @@
             <td>{{ book.author }}</td>
             <td>{{ book.isbn }}</td>
             <td><a href="edit/{{ book.id }}">Redigera info</a></td>
-            <td><a href="remove/{{ book.id }}">Ta bort bok</a></td>
+            <td><a href="delete/{{ book.id }}">Ta bort bok</a></td>
         </tr>
     {% endfor %}
     </tbody>

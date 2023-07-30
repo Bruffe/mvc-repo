@@ -60,7 +60,7 @@ class BookController extends AbstractController
         return $this->render('library/show-all.html.twig', $data);
     }
 
-    #[Route('/library/show/{id}', name: 'library_show_one')]
+    #[Route('/library/show/{id}', name: 'lib_show_one')]
     public function showOneBook(
         BookRepository $bookRepository,
         int $id
@@ -72,5 +72,39 @@ class BookController extends AbstractController
         ];
 
         return $this->render('library/show-one.html.twig', $data);
+    }
+
+    #[Route('/library/delete/{id}', name: 'lib_delete_form', methods: ['GET'])]
+    public function deleteForm(
+        BookRepository $bookRepository,
+        int $id
+    ): Response {
+        $book = $bookRepository->find($id);
+
+        if (!$book) {
+            throw $this->createNotFoundException(
+                'No book found for id '.$id
+            );
+        }
+
+        $data = [
+            "book" => $book
+        ];
+
+        return $this->render('library/delete.html.twig', $data);
+    }
+
+    #[Route('/library/delete/{id}', name: 'lib_delete', methods: ['POST'])]
+    public function deleteBookById(
+        ManagerRegistry $doctrine,
+        int $id
+    ): Response {
+        $entityManager = $doctrine->getManager();
+        $book = $entityManager->getRepository(Book::class)->find($id);
+
+        $entityManager->remove($book);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('lib_show_all');
     }
 }

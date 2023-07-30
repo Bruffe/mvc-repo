@@ -3,6 +3,7 @@
 {% block title %}Lägg till ny bok | Bibliotek{% endblock %}
 
 {% block body %}
+{{ block("liblinks", "library/lib-links.html.twig") }}
 <h1>Lägg till en ny bok</h1>
 
 <form method="POST" action="{{ path('lib_create') }}">
