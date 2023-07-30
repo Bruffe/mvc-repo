@@ -20,11 +20,11 @@ class BookController extends AbstractController
     }
 
     #[Route('/library/create', name: 'lib_create_form', methods: ['GET'])]
-    public function createBookForm(): Response 
+    public function createBookForm(): Response
     {
         return $this->render('library/create.html.twig');
     }
-    
+
     #[Route('/library/create', name: 'lib_create', methods: ['POST'])]
     public function createBook(
         Request $request,
