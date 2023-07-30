@@ -35,11 +35,13 @@ class BookController extends AbstractController
         $title = $request->get('title');
         $isbn = $request->get('isbn');
         $author = $request->get('author');
+        $image = $request->get('image');
 
         $book = new Book();
         $book->setTitle($title);
         $book->setIsbn($isbn);
         $book->setAuthor($author);
+        $book->setImage($image);
 
         $entityManager->persist($book);
         $entityManager->flush();
@@ -140,10 +142,12 @@ class BookController extends AbstractController
         $title = $request->get('title');
         $author = $request->get('author');
         $isbn = $request->get('isbn');
+        $image = $request->get('image');
 
         $book->setTitle($title);
         $book->setAuthor($author);
         $book->setIsbn($isbn);
+        $book->setImage($image);
 
         $entityManager->flush();
 

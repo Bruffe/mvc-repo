@@ -14,6 +14,7 @@
             <th>Titel</th>
             <th>Författare</th>
             <th>ISBN-nummer</th>
+            <th>Bild</th>
             <th>Ändra</th>
             <th>Ta bort</th>
         </tr>
@@ -23,6 +24,7 @@
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
             <td>{{ book.isbn }}</td>
+            <td><img src="{{ book.image }}" width="200px" alt="Bokens bild"></td>
             <td><a href="/library/update/{{ book.id }}">Redigera info</a></td>
             <td><a href="/library/delete/{{ book.id }}">Ta bort bok</a></td>
         </tr>

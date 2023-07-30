@@ -16,7 +16,11 @@
     <input type="number" name="isbn" value="{{ book.isbn }}" readonly><br>
 
     <label for="author">Författare:</label><br>
-    <input type="text" name="author" value="{{ book.author }}" readonly><br><br>
+    <input type="text" name="author" value="{{ book.author }}" readonly><br>
+
+    {% if book.image %}
+    <img src="{{ book.image }}" width="180px" alt="Bokens bild"><br>
+    {% endif %}
 
     <input type="submit" value="Ta bort">
 </form>
