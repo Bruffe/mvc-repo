@@ -42,6 +42,14 @@
             <input type="submit" name="api_game" value="21: aktuell ställning"
             onClick="this.form.action='{{ path('api_game') }}';">
         </li>
+        <li>
+            <input type="submit" name="lib_show_all_json" value="Bibliotek: visa böcker"
+            onClick="this.form.action='{{ path('lib_show_all_json') }}';">
+        </li>
+        <li>
+            <input type="submit" name="lib_show_one_json" value="Bibliotek: visa en bok"
+            onClick="this.form.action='{{ path('lib_show_one_json', {'isbn': 9780316457033}) }}';">
+        </li>
     </form>
 </ul>
 
