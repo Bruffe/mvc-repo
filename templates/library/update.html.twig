@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Uppdatera bok | Bibliotek{% endblock %}
+
+{% block body %}
+<h1>Uppdatera information om bok</h1>
+
+<form method="POST" action="{{ path('lib_update', {'id': book.id}) }}">
+    <label for="id">ID:</label><br>
+    <input type="text" name="id" value="{{ book.id }}" readonly><br>
+    
+    <label for="title">Titel:</label><br>
+    <input type="text" name="title" value="{{ book.title }}" required><br>
+
+    <label for="isbn">ISBN-nummer:</label><br>
+    <input type="number" name="isbn" value="{{ book.isbn }}" required><br>
+
+    <label for="author">Författare:</label><br>
+    <input type="text" name="author" value="{{ book.author }}" required><br><br>
+
+    <input type="submit" value="Spara ändringar">
+</form>
+
+{% endblock %}
