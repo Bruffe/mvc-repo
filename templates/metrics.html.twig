@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <h1>Metrics analys</h1>
+
+    <h2>Introduktion</h2>
+    {# Börja med en rubrik “Introduktion” där du förklarar de sex C:na och hur de kan påverka kodens kvalitet. 
+    Exemplifiera, där det passar, med några mätvärden som är kopplad till din egen kod och ge en kort 
+    förklaring av mätvärdet relaterat till kodkvalitet. #}
+    <p>Denna analys kommer täcka sex C:n och hur de påverkar kodens kvalitet.</p>
+    <p>Det första C:t är "Code style" som handlar om att följa vissa standarder när man kodar. Det kan till exempel vara att använda intabbning på 4 tecken/mellanrum och att inte skriva för långa rader så att koden blir lättare att läsa.</p>
+    <p>Det andra C:t är "Coverage" som står för hur stor del av kodrader (eller funktioner/metoder) har exekverats när koden testats. Kodtäckning anges i procent och utan tester är kodtäckningen 0%. I min kodtäckningsrapport över klasserna Card, CardGraphic, CardHand och DeckOfCards fick jag cirka 95% kodtäckning på rader, vilket är väldigt bra. Tyvärr gav Scrutinizer mig 32% kodtäckning eftersom den tittar varenda klass som finns, som inte alls är lika övertygande angående bra kodkvalitet.</p>
+    <p>Det tredje C:t är "Complexity" som innebär hur avancerad koden är. Oftast pratar man om "Cyclomatic complexity" som är antalet linjärt oberoende vägar koden kan ta när den exekveras. If-satser, loopar och switch-cases är några exempel på saker som ökar "Cyclomatic complexity". En metod jag har på CardHand-klassen har hög "Cyclomatic complexity" delvis på grund av en switch som tittar igenom 13 eller 14 olika cases, en för varje kortvärde. Det var något som gjorde den svårare att testa.</p>
+    <p>Det fjärde C:t är "Cohesion" som fokuserar på en klass eller moduls sammanhållning. För att få hög "Cohesion" krävs det att klassen i fråga representerar en specifik sak och att varje metod har ett specifikt syfte. Om en metod ansvarar för fler än ett syfte sänker det "Cohesion".</p>
+    <p>Det femte C:t är "Coupling" som refererar till nivån av beroenden ett program har. Låg "Coupling" innebär att klasser/moduler är självständiga och har därför liten påverkan på andra klasser/moduler vid ändringar. Man brukar dela upp "Coupling" i "Afferent coupling" (Ca) och "Efferent coupling" (Ce). Det förstnämnda är antalet klasser som är beroende av denna klass. "Efferent coupling" är antalet klasser som denna klass är beroende av. Sedan används Ca och Ce för att räkna ut instabilitet (I) med I = Ce / (Ce + Ca). Om I = 0 för en modul tyder det på att den är helt stabil, medan I = 1 tyder på att den är helt instabil.</p>
+    <p>Det sjätte C:t är "CRAP" som står för Change Risk Anti-Patterns. Det finns till för att visa vilka metoder som är riskabla att förändra. En metod med hög "Cyclomatic complexity" kräver högre "Coverage" för att hålla sig på en okej CRAP-nivå.</p>
+
+    <h2>PhpMetrics</h2>
+    {# Skapa en rubrik “Phpmetrics” och analysera dess rapport för din kod. Använd mätvärdena för att hitta flaskhalsar och svaga punkter i din kod (minst 3 stycken). Du vill hitta kod som har förbättringspotential. Visualisera med någon representativ bild från rapporten. #}
+    <a href="{{ asset('img/coupling.png') }}">
+        <img src="{{ asset('img/coupling.png') }}" width="800px" alt="Coupling">
+    </a>
+    <p>Vad det gäller "Coupling" känns det lite knepigt att analysera resultatet. Enligt mig känns det inte som en riktigt rättvis jämförelse, men det är vad det är. Varenda Controller-klass har fått 1 i instability eftersom de är beroende av så många andra moduler och klasser för att visa upp och hantera information. Samtidigt är ingen klass beroende av dessa Controller-klasser.</p>
+    <p>Efter att man tittat på Controller-klasserna har varenda klass fått under 1 i instability eftersom det finns andra klasser som är beroende av de, alltså har de hög "Afferent coupling". Resultatet är inte speciellt förvånande eftersom jag har ganska bra koll på mina klassers beroenden. Tyvärr vet jag inte hur man skulle kunna lösa detta "problem" mer än att eventuellt dela upp vissa Controllers för att försöka få ner antalet beroenden per Controller.</p><br>
+
+    <a href="{{ asset('img/complexity.png') }}">
+        <img src="{{ asset('img/complexity.png') }}" width="800px" alt="Complexity">
+    </a>
+    <p>När vi tittar på "Complexity" ser vi 3 klasser med väldigt hög Weighted Method Count (WMC), som är en klass totala "Cyclomatic complexity". Dessa är CardGameController, CardHand och CardGame21. En hög WMC behöver inte nödvändigtvis betyda att klassernas metoder är för komplexa, eftersom att även en klass med många simplare metoder skulle fått en hög WMC. Därför tar vi även en titt under "Max method cycle" som anger "Cyclomatic complexity" för den mest komplexa metoden i den specifika klassen. Där ser vi att CardHand-klassen har 19, vilket är högre än optimalt. Anledningen till det höga värdet nämnde jag lite fort under "Complexity" i introduktionen.</p>
+    <p>Längst till höger på samma bild ser vi även antalet testfall per klass. Det är 4 klasser som har testfall från kmom04. Det finns även drygt 10 klasser som inte har några testfall alls. Som jag nämnde lite kort i introduktionen har jag väldigt bra "code coverage" på de 4 klasserna jag gjort testfall in, men det saknas till många andra klasser.</p><br>
+
+    <h2>Scrutinizer</h2>
+    <a href="{{ asset('img/scrutinizer-worst-methods.png') }}">
+        <img src="{{ asset('img/scrutinizer-worst-methods.png') }}" width="600px" alt="Worst methods">
+    </a>
+    <p>Scrutinizer är ett verktyg som analyserar mitt projekt online via GitHub och sedan rapporterar hur allt ser ut. På denna bild kan vi se att Scrutinizer gett betyg (A till F) på mina metoder. De flesta ser bra ut men getPoints-metoden har fått D i betyg. När jag sedan klickar in på den metoden står det att den misslyckats på "Complexity" för det finns för många vägar för programmet att ta. Det är något jag vill försöka lösa, eller iallafall minska problemet så att metoden kan få högre betyg. Som tur är har varenda av mina klasser fått A, så generellt ser det väldigt positivt ut tycker jag.</p><br>
+    
+    <a href="{{ asset('img/scrutinizer-code-coverage.png ') }}">
+        <img src="{{ asset('img/scrutinizer-code-coverage.png ') }}" width="800px" alt="Code coverage">
+    </a>   
+    <p>På denna bild ser vi att Scrutinizer analyserat vår "Coverage". Som jag nämnde i delen om PhpMetrics har jag endast skapat tester till mina klasser i Card-katalogen. Testerna för de klasserna har väldigt bra kodtäckning. Däremot är det 5 kataloger med klasser som inte har några tester alls. Det gör att den totala kodtäckningen endast ligger på 31.8%. Den skulle jag vilja höja till minst 50%, men helst runt 70%.</p><br>
+
+    <h2>Förbättringar</h2>
+    <p>Jag tänkte försöka minska "instability" på Controller-klasser genom att dela upp de i mindre klasser för att sänka "Efferent coupling". Sen insåg jag att instability för de kommer alltid vara 1 eftersom det inte finns några klasser som är beroende av de.</p>
+    <p>Efter mer tänkande så kom jag på att borde kunna sänka "instability" på Controller-klasser genom att skapa testfall, eftersom filen med testfallen isåfall kommer vara beroende av Controllern i fråga. Utöver det vore det nog en bra idé att även dela upp Controller-klasserna som jag nämnde innan. Dessa ändringar kommer sänka "instability", som i sin tur kan minska risken för oväntade förändringar.</p>
+
+    <p>Den andra förbättringen jag vill genomföra är att minska "Complexity" för getPoints-metoden. Målet är att uppnå ett betyg på B eller A som de andra metoderna, inte D som det är nu. Jag har tänkt göra det genom att lägga till en property och en get-metod på CardGraphic som sköter antalet poäng, så jag slipper ha en lång switch på getPoints-metoden i CardHand-klassen.</p>
+    <p>Jag tror även jag skulle kunna lösa det på ett annat lite lättare sätt. Genom att ta bort alla cases för kort med siffror (2-10) kan jag låta de gå som default istället och där i hantera kort-värdet. På det sättet borde jag lätt och smidigt bli av med 9 cases, om allt går som planerat.</p>
+
+    <p>Den sista förbättringen jag tänkt göra är att höja kodtäckningen genom att skapa fler tester. Jag väljer att göra denna förbättring för att min kodtäckning är väldigt låg. Högre kodtäckning hjälper säkertställa att koden fungerar som den ska. Jag skulle vilja höja min "Coverage" från 31,8% till 50% minst, men gärna närmare 70%. Om jag skapar flera tester för varje klass förutom eventuellt vissa av klasserna i Controller-katalogen borde jag kunna uppnå minst 50%.</p>
+
+    {# Analysera nya resultaten #}
+    <p></p>
+    
+    <h2>Diskussion</h2>
+{% endblock %}

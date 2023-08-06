@@ -86,4 +86,10 @@ class Controller extends AbstractController
         //     '<html><body>Quote: '.$quotes[$random_index].'</body></html>'
         // );
     }
+
+    #[Route("/metrics", name: "metrics")]
+    public function metrics(): Response
+    {
+        return $this->render('metrics.html.twig');
+    }
 }
