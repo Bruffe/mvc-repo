@@ -20,9 +20,8 @@ build:
                     - php-scrutinizer-run
     tests:
         override:
-            -   command: 
-                - "npm run build"
-                - "composer phpunit"
+            -   command: "npm run build phpunit"
+            -   command: "composer phpunit"
                 # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
                 coverage:
                     file: "docs/coverage.clover"
