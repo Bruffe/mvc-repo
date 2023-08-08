@@ -19,9 +19,11 @@ build:
             tests:
                 override:
                     - php-scrutinizer-run
-    tests:
+    project_setup:
         override:
             -   command: "nvm use --delete-prefix v18.15.0"
+    tests:
+        override:
             -   command: "npm run build"
             -   command: "composer phpunit"
                 # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
