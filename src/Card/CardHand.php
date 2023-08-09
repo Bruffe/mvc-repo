@@ -47,17 +47,6 @@ class CardHand
                 case "ace":
                     $pointArray[] = 14;
                     break;
-                case "2":
-                case "3":
-                case "4":
-                case "5":
-                case "6":
-                case "7":
-                case "8":
-                case "9":
-                case "10":
-                    $pointArray[] = (int) $card->getValue();
-                    break;
                 case "jack":
                     $pointArray[] = 11;
                     break;
@@ -68,6 +57,7 @@ class CardHand
                     $pointArray[] = 13;
                     break;
                 default:
+                    $pointArray[] = (int) $card->getValue();
                     break;
             }
         }
