@@ -95,25 +95,21 @@ class CardGame21
 
     public function decideWinner(): string
     {
-        $winner = "";
-
-        if (! $this->getPlayerStand() || ! $this->getDealerStand()) {
-            return $winner;
-        }
-
         $playerPoints = array_sum($this->getPlayerScore());
         $dealerPoints = array_sum($this->getDealerScore());
-        $winner = "dealer";
-        if ($dealerPoints > 21) {
-            $winner = "player";
-            if ($playerPoints > 21) {
-                $winner = "dealer";
-            }
-        } elseif ($playerPoints > 21) {
-            $winner = "dealer";
-        } elseif ($playerPoints > $dealerPoints) {
-            $winner = "player";
+
+        if (!$this->getPlayerStand() || !$this->getDealerStand()) {
+            return "";
         }
-        return $winner;
+
+        if ($playerPoints > 21) {
+            return "dealer";
+        }
+
+        if ($dealerPoints > 21 || $playerPoints > $dealerPoints) {
+            return "player";
+        }
+
+        return "dealer";
     }
 }
