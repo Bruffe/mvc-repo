@@ -15,7 +15,7 @@
     <p>Det tredje C:t är "Complexity" som innebär hur avancerad koden är. Oftast pratar man om "Cyclomatic complexity" som är antalet linjärt oberoende vägar koden kan ta när den exekveras. If-satser, loopar och switch-cases är några exempel på saker som ökar "Cyclomatic complexity". En metod jag har på CardHand-klassen har hög "Cyclomatic complexity" delvis på grund av en switch som tittar igenom 13 eller 14 olika cases, en för varje kortvärde. Det var något som gjorde den svårare att testa.</p>
     <p>Det fjärde C:t är "Cohesion" som fokuserar på en klass eller moduls sammanhållning. För att få hög "Cohesion" krävs det att klassen i fråga representerar en specifik sak och att varje metod har ett specifikt syfte. Om en metod ansvarar för fler än ett syfte sänker det "Cohesion".</p>
     <p>Det femte C:t är "Coupling" som refererar till nivån av beroenden ett program har. Låg "Coupling" innebär att klasser/moduler är självständiga och har därför liten påverkan på andra klasser/moduler vid ändringar. Man brukar dela upp "Coupling" i "Afferent coupling" (Ca) och "Efferent coupling" (Ce). Det förstnämnda är antalet klasser som är beroende av denna klass. "Efferent coupling" är antalet klasser som denna klass är beroende av. Sedan används Ca och Ce för att räkna ut instabilitet (I) med I = Ce / (Ce + Ca). Om I = 0 för en modul tyder det på att den är helt stabil, medan I = 1 tyder på att den är helt instabil.</p>
-    <p>Det sjätte C:t är "CRAP" som står för Change Risk Anti-Patterns. Det finns till för att visa vilka metoder som är riskabla att förändra. En metod med hög "Cyclomatic complexity" kräver högre "Coverage" för att hålla sig på en okej CRAP-nivå.</p>
+    <p>Det sjätte C:t är "CRAP" som står för Change Risk Anti-Patterns. Det finns till för att visa vilka metoder som är riskabla att förändra. En metod med hög "Cyclomatic complexity" kräver högre "Coverage" för att hålla sig på en okej CRAP-nivå.</p><br>
 
     <h2>PhpMetrics</h2>
     {# Skapa en rubrik “Phpmetrics” och analysera dess rapport för din kod. Använd mätvärdena för att hitta flaskhalsar och svaga punkter i din kod (minst 3 stycken). Du vill hitta kod som har förbättringspotential. Visualisera med någon representativ bild från rapporten. #}
@@ -43,16 +43,32 @@
     <p>På denna bild ser vi att Scrutinizer analyserat vår "Coverage". Som jag nämnde i delen om PhpMetrics har jag endast skapat tester till mina klasser i Card-katalogen. Testerna för de klasserna har väldigt bra kodtäckning. Däremot är det 5 kataloger med klasser som inte har några tester alls. Det gör att den totala kodtäckningen endast ligger på 31.8%. Den skulle jag vilja höja till minst 50%, men helst runt 70%.</p><br>
 
     <h2>Förbättringar</h2>
-    <p>Jag tänkte försöka minska "instability" på Controller-klasser genom att dela upp de i mindre klasser för att sänka "Efferent coupling". Sen insåg jag att instability för de kommer alltid vara 1 eftersom det inte finns några klasser som är beroende av de.</p>
-    <p>Efter mer tänkande så kom jag på att borde kunna sänka "instability" på Controller-klasser genom att skapa testfall, eftersom filen med testfallen isåfall kommer vara beroende av Controllern i fråga. Utöver det vore det nog en bra idé att även dela upp Controller-klasserna som jag nämnde innan. Dessa ändringar kommer sänka "instability", som i sin tur kan minska risken för oväntade förändringar.</p>
+    <p>Jag tänkte försöka minska "instability" på Controller-klasser genom att dela upp dem i mindre klasser för att sänka "Efferent coupling". Sen insåg jag att instability för de kommer alltid vara 1 eftersom det inte finns några klasser som är beroende av dem.</p>
+    <p>Efter mer tänkande kom jag på att borde kunna sänka "instability" på Controller-klasser genom att skapa testfall, eftersom filen med testfallen isåfall kommer vara beroende av Controllern i fråga. Utöver det vore det nog en bra idé att även dela upp Controller-klasserna som jag nämnde innan. Dessa ändringar kommer sänka "instability", som i sin tur kan minska risken för oväntade förändringar.</p>
 
     <p>Den andra förbättringen jag vill genomföra är att minska "Complexity" för getPoints-metoden. Målet är att uppnå ett betyg på B eller A som de andra metoderna, inte D som det är nu. Jag har tänkt göra det genom att lägga till en property och en get-metod på CardGraphic som sköter antalet poäng, så jag slipper ha en lång switch på getPoints-metoden i CardHand-klassen.</p>
     <p>Jag tror även jag skulle kunna lösa det på ett annat lite lättare sätt. Genom att ta bort alla cases för kort med siffror (2-10) kan jag låta de gå som default istället och där i hantera kort-värdet. På det sättet borde jag lätt och smidigt bli av med 9 cases, om allt går som planerat.</p>
 
     <p>Den sista förbättringen jag tänkt göra är att höja kodtäckningen genom att skapa fler tester. Jag väljer att göra denna förbättring för att min kodtäckning är väldigt låg. Högre kodtäckning hjälper säkertställa att koden fungerar som den ska. Jag skulle vilja höja min "Coverage" från 31,8% till 50% minst, men gärna närmare 70%. Om jag skapar flera tester för varje klass förutom eventuellt vissa av klasserna i Controller-katalogen borde jag kunna uppnå minst 50%.</p>
 
+    <p>Efter att jag kände mig klar med mina förbättringar insåg jag att "instability" fortfarande är 1 på Controller-klasserna eftersom testklasserna inte är beroende av de. Därför beslutade jag mig för att istället göra en simpel förbättring som ersättning för att uppnå mina tre förbättringar. Jag minskade "Complexity" på decideWinner-metoden i CardGame21-klassen.</p><br>
+
     {# Analysera nya resultaten #}
-    <p></p>
-    
+    <h4>Analys av resultat efter förbättring</h4>
+    <p>Mitt första bygge med Scrutinizer fick 9.59/10 i kodkvalitet och 32% kodtäckning. Mitt bygge efter att ha implementerat förbättringarna har 9.93/10 i kodkvalitet och 71% kodtäckning.</p>
+
+    <a href="{{ asset('img/scrutinizer-code-coverage-improvement.png ') }}">
+        <img src="{{ asset('img/scrutinizer-code-coverage-improvement.png ') }}" width="400px" alt="Code coverage improvement">
+    </a>
+
+    <p>Jag började med att prova göra test till klassen Controller och kände att jag ville prova det lite mer, därför fortsatte jag med flera Controller-klasserna. Jag gjorde helt tvärtom vad planen var, men jag insåg att majoriteten av koden är i Controller-klasserna. Av den anledningen kände jag mig tvungen att skapa tester för de klasserna för att nå minst 50% kodtäckning. Jag gjorde totalt 28 nya tester. Som vi ser på bilden över gjorde dessa tester att kodtäckningen på 8 klasser ökades, vissa mer än andra. BookRepository, Book och CardGame21 ökades när jag provade deras respektive Controller-klass. Denna stora ökning i kodtäckning på flera stora klasser gjorde att den totala kodtäckningen höjdes från 32% till 71%.</p>
+
+    <p>Att förbättra getPoints-metoden gick väldigt lätt. Jag lyckades bli av med 9 cases i min switch, vilket gjorde att "conditions" gick från 19 till 10 och "paths" från 30 till 12. Det gjorde i sin tur att metodens betyg gick från D till B och höjde projektets totala betyg till 9.89, en ökning på 0.23.</p>
+
+    <p>Den sista förbättringen jag gjorde var att förbättra decideWinner-metoden. Jag strukturerade upp det på ett smartare sätt med if-satser och flera returns så den kan returnera utan att gå genom andra onödiga if-satser. Med den nya koden lyckades jag sänka "conditions" från 7 till 6 och "paths" från 6 till 4. Metodens betyg gick från B till A och höjde det totala betyget från 9.89 till 9.93.</p><br>
+
     <h2>Diskussion</h2>
+    <p>Jag tycker analysen hjälpte mig att hitta brister och se till att jag kommer på lösningar för att förbättra min kod. Det känns som en bra vana att använda sig av verktyg som Scrutinizer och titta vad som behöver skrivas om. Utan det hade jag inte vetat att jag hade överkomplicerade metoder, för de var i filer som jag inte jobbar på längre och då är de "klara" i mitt huvud.</p>
+
+    <p>Det finns väldigt mycket positivt med verktygen. Däremot tycker jag att PhpMetrics hade väldigt mycket information som jag inte kände att jag hade något behov av, därför föredrar jag Scrutinizer om jag endast får välja ett verktyg. Jag gillar att man lätt ser en historik på Scrutinizer, vad som förbättrats, hur granskningen gick och allt om individuella filer. Jag vet inget annat bättre sätt att jobba mot "clean code" än att använda sig av Scrutinizer.</p>
 {% endblock %}

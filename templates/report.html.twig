@@ -112,7 +112,25 @@
     att kommunicera med en databas med objektorienterad programmering. Det är något jag gärna använder mer framöver.</p>
 
     <h2 id="kmom06">kmom06</h2>
-    <p>Redovisningstext här..</p>
+    <p>Detta kursmoment har handlat om att börja använda sig av PhpMetrics och Scrutinizer för att hitta svaga punkter i 
+    koden som man sedan kan fixa. Generellt skulle jag säga att jag föredrar Scrutinizer's information lite mer. Jag gillar 
+    att man lätt ser ett betyg (1-10) på kodkvalitet och andel kodtäckning. PhpMetrics verkar visa upp mer information än 
+    vad Scrutinizer gör. Än så länge har jag dock inte känt att jag haft någon användning för majoriteten av informationen 
+    som PhpMetrics visar. Jag tror att den informationen skulle vara mer intressant om man jobbar på ett lite större projekt, 
+    speciellt ifall det är flera utvecklare involverade.</p>
+    <p>Jag hade svårt att fixa Scrutinizer i mitt projekt för jag hade .env-filen i min .gitignore-fil så den inte laddades 
+    upp till mitt GitHub-repo. Den filen behövdes i repo:t så att Scrutinizer kunde använda sig av det, men det förstod inte 
+    jag från början. Jag satt med det problemet någon timme innan jag till slut löste det. När jag väl fick Scrutinizer att 
+    funka tyckte jag att det verkade väldigt bra. Badges var lätta att lägga till i en readme-fil på GitHub-repo:t. Efter 
+    mitt första lyckade bygge fick jag 9.59/10 i kodkvalitet och 32% kodtäckning.</p>
+    <p>Det finns många olika sätt att mäta kodkvalitet. Jag tror att vissa värden är viktigare att titta på än andra. Vissa 
+    värden är mer till för att visa att någonting riskerar att få problem, till exempel "instability", men så länge man inte 
+    längre utvecklar programmet/hemsidan och bygger på klasserna som en instabil klass är beroende av så kommer troligtvis 
+    ingenting att hända. Då tycker jag att det är viktigare att fokusera på komplexitet och liknande värden som kan ha en 
+    positiv påverkan på hastighet och läsbarhet.</p>
+    <p>Min TIL denna vecka är att det finns fantastiska verktyg som PhpMetrics och Scrutinizer. Jag tror absolut att jag 
+    kommer använda mig av Scrutinizer i framtiden, delvis för att det fungerar till andra språk också, såsom Python och 
+    JavaScript. Jag har även lärt mig om många nya "asserts" som jag använt på mina Controller-tester.</p>
 
     <h2 id="kmom10">kmom10</h2>
     <p>Redovisningstext här..</p>
