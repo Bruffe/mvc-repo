@@ -256,6 +256,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-Controller.html#method_quote"
         },                {
+            "fqsen": "\\App\\Controller\\Controller\u003A\u003Ametrics\u0028\u0029",
+            "name": "metrics",
+            "summary": "",
+            "url": "classes/App-Controller-Controller.html#method_metrics"
+        },                {
             "fqsen": "\\App\\Controller\\DiceGameController",
             "name": "DiceGameController",
             "summary": "",
