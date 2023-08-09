@@ -26,11 +26,11 @@
 /node_modules/
 # /public/build/*
 # !/public/build/manifest.json
-/public/build/app.css
-/public/build/app.js
-/public/build/entrypoints.json
-/public/build/runtime.json
-/public/build/
+# /public/build/app.css
+# /public/build/app.js
+# /public/build/entrypoints.json
+# /public/build/runtime.json
+# /public/build/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###

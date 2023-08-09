@@ -1,32 +1,21 @@
 imports:
     - php
-
 filter:
     excluded_paths: [vendor/*, test/*]
-
 build:
     image: default-bionic
-
     nodes:
         my-tests:
             environment:
                 php:
-                    # version: 8.1.13
-                    # version: 8.1.17
                     version: 8.2.4
-                node: v18.15.0
         analysis:
             tests:
                 override:
                     - php-scrutinizer-run
-    project_setup:
-        override:
-            -   command: "nvm use --delete-prefix v18.15.0"
     tests:
         override:
-            -   command: "npm run build"
             -   command: "composer phpunit"
-                # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
                 coverage:
                     file: "docs/coverage.clover"
                     format: "php-clover"
