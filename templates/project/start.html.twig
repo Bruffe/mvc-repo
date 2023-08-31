@@ -1,0 +1,24 @@
+{% extends "project/project-base.html.twig" %}
+
+{% block title %}Starta nytt spel{% endblock %}
+
+{% block body %}
+    <h1>Starta nytt spel</h1>
+    <p>Ange namn för de som ska spela. Spelare 1 krävs självklart. Spelare 2 och 3 krävs inte.</p>
+
+    <form method="POST" action="{{ path('proj_init_game') }}">
+        <label for="player-name">Namn för spelare:</label><br>
+        <input type="text" name="player-name" value="{{ playerName }}" required><br>
+
+        <label for="hands">Antal händer:</label>
+        <select class="blackjack-select" name="hands">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select><br>
+
+        {# <input class="blackjack-button" type="submit" value="Starta spel"> #}
+        <input class="blackjack-button" type="submit" value="Gå vidare">
+    </form>
+
+{% endblock %}

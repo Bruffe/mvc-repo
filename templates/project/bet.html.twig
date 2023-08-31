@@ -1,0 +1,17 @@
+{% extends "project/project-base.html.twig" %}
+
+{% block title %}Satsa pengar{% endblock %}
+
+{% block body %}
+    <h1>Satsa pengar</h1>
+
+    <form method="POST" action="{{ path('proj_process_bet') }}">
+        {% for hand in 1..hands %}
+        <label for="bet{{ hand }}">Satsning för hand {{ hand }}:</label><br>
+        <input class="blackjack-select" type="number" name="bet{{ hand }}" value="" required><br><br>
+        {% endfor %}
+
+        <input class="blackjack-button" type="submit" value="Starta spel">
+    </form>
+
+{% endblock %}

@@ -14,26 +14,18 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
-        <header class="site-header">
+    <body class="project-body">
+        <header class="site-header project-header">
         {# <header class="site-header" style="background-image: url({{ asset('img/background.jpg') }})"> #}
             <span class="site-title">My Symfony Site</span>
         </header>
         <nav>
             <ul>
-                <li><a href="{{ path('home') }}">Hem</a></li>
-                <li><a href="{{ path('about') }}">Om</a></li>
-                <li><a href="{{ path('report') }}">Redovisning</a></li>
-                <li><a href="{{ path('lucky') }}">Tur eller otur</a></li>
-                <li><a href="{{ path('api') }}">API/JSON</a></li>
-                <li><a href="{{ path('card_start') }}">Kort</a></li>
-                <li><a href="{{ path('game_home') }}">Kortspel</a></li>
-                <li><a href="{{ path('lib_home') }}">Bibliotek</a></li>
-                <li><a href="{{ path('metrics') }}">Metrics</a></li>
-                <li><a href="{{ path('proj_about') }}">Projekt</a></li>
+                <li><a class="blackjack-link" href="{{ path('proj_about') }}">Projekt</a></li>
+                <li><a class="blackjack-link" href="{{ path('proj_start_game') }}">Starta Blackjack</a></li>
             </ul>
         </nav>
         <main>{% block body %}{% endblock %}</main>
-        <footer>{% block footer %}Skapad av Gabriel Rahm | gara20{% endblock %}</footer>
+        <footer class="project-footer">{% block footer %}Skapad av Gabriel Rahm | gara20{% endblock %}</footer>
     </body>
 </html>

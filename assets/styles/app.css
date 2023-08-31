@@ -132,3 +132,47 @@ table, th {
 td {
     border: 1px solid black;
 }
+
+/* 
+Project-related styling
+*/
+
+.project-body {
+    background-color: #06571d;
+}
+
+.project-header,
+.project-footer {
+    background-color: #444;
+}
+
+.project-body *,
+.project-header *,
+.project-footer * {
+    color: #ccc;
+}
+
+.blackjack-link,
+.blackjack-button,
+.blackjack-select,
+.blackjack-select option {
+    color: #666;
+}
+
+.hands-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.hand-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    /* width: calc(33.33% - 20px); */
+    width: calc(25% - 20px);
+    box-sizing: border-box;
+    border-radius: 25px;
+    /* test below */
+    min-height: 350px;
+}

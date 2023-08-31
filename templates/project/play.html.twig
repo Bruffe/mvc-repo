@@ -1,0 +1,79 @@
+{% extends "project/project-base.html.twig" %}
+
+{% block title %}Blackjack{% endblock %}
+
+{% block body %}
+    <h1>Blackjack</h1>
+    {# <p>Spelarnamn: {{ playerName }}</p> #}
+    {# <p>Hands: {{ hands }}</p> #}
+    <p>Spelarnamn: {{ blackJack.player.getName }}</p>
+    {# <p>{{ blackJack.player.name }}</p> #}
+    <p>Händer: {{ blackJack.player.getHands|length }}</p>    
+    <p>Schilling kvar: {{ blackJack.player.getMoney }}</p>
+
+    <div class="hands-container">
+    {# <span>Spelarens händer:</span> #}
+    {% for handIndex, hand in blackJack.player.getHands() %}
+        <div class="hand-box">
+        <h3>Spelares hand {{ handIndex + 1}}:</h3>
+        {% for cardIndex, card in hand.hand %}
+            {# <figure style="width: 64px"> #}
+            <figure>
+                <img src="{{ asset('img/cards/' ~ card.getUrl()) }}" width="64px" alt="Spelarens kort">
+                <figcaption>{{ blackJack.getPlayerScore(handIndex)[cardIndex] }}</figcaption>
+            </figure>
+        {% endfor %}
+
+        <p>{{ "Total poäng: " ~ blackJack.player.getScore(handIndex)|reduce((carry, item) => carry + item, 0) }}</p>
+        <p>{{ "Bet: " ~ blackJack.player.getBets[handIndex] ~ " Schilling" }}</p>
+        {# <p>{{ blackJack.player.name }}</p> #}
+        </div>
+    {% endfor %}
+    {# </div>
+    <div class="hands-container"> #}
+        <div class="hand-box">
+        <h3>Givens hand:</h3>
+        {# Dealers hand #}
+        {% if blackJack.player.getStand %}
+        {% for cardIndex, card in blackJack.dealer.getHand %}
+            <figure>
+                <img src="{{ asset('img/cards/' ~ card.getUrl()) }}" width="64px" alt="Givens kort">
+                <figcaption>{{ blackJack.getDealerScore()[cardIndex] }}</figcaption>
+            </figure>
+        {% endfor %}
+        <p>{{ "Total poäng: " ~ blackJack.dealer.getScore()|reduce((carry, item) => carry + item, 0) }}</p>
+        {% else %}
+        <p>Korten visas när du spelat dina händer</p>
+        {% endif %}
+        </div>
+    </div>
+
+
+    <form method="POST" action="">
+        {% if not blackJack.player.getStand %}
+        <input class="blackjack-button" type="submit" name="show" value="Dra kort"
+        onClick="this.form.action='{{ path('proj_draw') }}';">
+
+        <input class="blackjack-button" type="submit" name="show" value="Stanna"
+        onClick="this.form.action='{{ path('proj_stand') }}';">
+
+        {% elseif blackJack.player.getStand and not blackJack.dealer.getStand %}
+        <input class="blackjack-button" type="submit" name="show" value="Låt datorn spela"
+        onClick="this.form.action='{{ path('proj_draw') }}';">
+
+        {% elseif blackJack.player.getStand and blackJack.dealer.getStand %}
+        <input class="blackjack-button" type="submit" name="show" value="Fortsätt spela"
+        onClick="this.form.action='{{ path('proj_continue') }}';">
+
+        {% endif %}
+        <input class="blackjack-button" type="submit" name="show" value="Starta om spelet"
+        onClick="this.form.action='{{ path('proj_restart_game') }}';">
+    </form>
+
+    <p>{{ blackJack.player.getStand }}, {{ blackJack.dealer.getStand }}</p>
+
+    {% if blackJack.player.getStand and blackJack.dealer.getStand %}
+    <p>Game over</p>
+    {% endif %}
+
+{% endblock %}
