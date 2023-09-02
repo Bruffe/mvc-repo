@@ -17,7 +17,6 @@ class Dealer
 
         for ($i = 1; $i <= $handCount; $i++) {
             $this->hands[] = new BlackjackHand($deck, 2);
-            // $this->hands[] = new BlackjackHand($deck, 0);
         }
     }
 

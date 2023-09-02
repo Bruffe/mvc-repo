@@ -176,3 +176,29 @@ Project-related styling
     /* test below */
     min-height: 350px;
 }
+
+.hand-box figure {
+    width: 64px;
+}
+
+.hand-box figcaption {
+    text-align: center;
+    font-size: small;
+}
+
+.pay-text {
+    font-size: small;
+    text-align: center;
+}
+
+.green-text-bg {
+    background-color: green;
+}
+
+.red-text-bg {
+    background-color: red;
+}
+
+.yellow-text-bg {
+    background-color: yellow;
+}

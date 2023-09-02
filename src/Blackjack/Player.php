@@ -13,6 +13,8 @@ class Player extends Dealer
 
     private string $name;
 
+    private array $winnings; //test
+
     public function __construct($deck, $handCount, $name, $money = 100)
     {
         parent::__construct($deck, $handCount);
@@ -21,10 +23,16 @@ class Player extends Dealer
 
         $this->money = $money;
         $this->name = $name;
+    }
 
-        // for ($i = 1; $i <= $handCount; $i++) {
-        //     $this->hands[] = new BlackjackHand($deck, 2);
-        // } // behövs ifall Dealer inte har detta
+    public function getWinnings(): array
+    {
+        return $this->winnings;
+    }
+
+    public function storeWinning($winning)
+    {
+        $this->winnings[] = $winning;
     }
 
     public function canAffordBet($bets): bool
