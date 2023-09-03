@@ -31,7 +31,6 @@ class ProjectController extends AbstractController
             echo($blackJackDetails['money']);
 
             $data = [
-                // "playerName" => $blackJackDetails->playerName
                 "playerName" => $blackJackDetails["playerName"]
             ];
         }
@@ -56,25 +55,19 @@ class ProjectController extends AbstractController
             $blackJackDetails = $session->get("blackJackDetails");
 
             $blackJack->player->setMoney($blackJackDetails["money"]);
-            // $blackJack->player->setMoney(1000);
         }
         
         $session->set("blackJack", $blackJack);
-        
-        // return $this->redirectToRoute('proj_play_game');
+
         return $this->redirectToRoute('proj_bet');
     }
 
     #[Route("/proj/play-game", name: "proj_play_game")]
     public function projectPlayGame(SessionInterface $session): Response
     {
-        // $blackJack = new Blackjack($session->get('hands'), $session->get('player_name'));
-
         if ($session->has("blackJack")) {
             $blackJack = $session->get("blackJack");
         }
-
-        // $session->set("blackJack", $blackJack);
 
         $data = [
             "playerName" => $session->get('player_name'),
@@ -91,7 +84,6 @@ class ProjectController extends AbstractController
         if ($session->has("blackJack")) {
             $blackJack = $session->get("blackJack");
             $blackJack->play();
-            // $blackJack->player->drawCard($blackJack->getDeck(), $blackJack->player->getCurrentHand());
             $session->set("blackJack", $blackJack);
         }
 
@@ -103,7 +95,6 @@ class ProjectController extends AbstractController
     {
         if ($session->has("blackJack")) {
             $blackJack = $session->get("blackJack");
-            // $blackJack->setPlayerStand();
             $blackJack->player->incrementCurrentHand();
             $session->set("blackJack", $blackJack);
         }
@@ -177,7 +168,6 @@ class ProjectController extends AbstractController
 
             $blackJackDetails = [
                 "money" => $money,
-                // "handAmount" => $handAmount,
                 "playerName" => $playerName
             ];
             $session->set("blackJackDetails", $blackJackDetails);

@@ -26,14 +26,6 @@
         <p>{{ "Total poäng: " ~ blackJack.player.getScore(handIndex)|reduce((carry, item) => carry + item, 0) }}</p>
         <p>{{ "Bet: " ~ blackJack.player.getBets[handIndex] ~ " Schilling" }}</p>
 
-        {# {% if blackJack.decideWinner(handIndex) == "player" %}
-        <p class="pay-text green-text-bg">+{{ blackJack.player.getWinnings()[handIndex]}} Schilling (+ {{ blackJack.player.getBets()[handIndex]}} i insats)</p>
-        {% elseif blackJack.decideWinner(handIndex) == "dealer" %}
-        <p class="pay-text red-text-bg">{{ blackJack.player.getWinnings()[handIndex]}} Schilling (insatsen)</p>
-        {% elseif blackJack.decideWinner(handIndex) == "draw" %}
-        <p class="pay-text yellow-text-bg">Insats returnerad</p>
-        {% endif %} #}
-
         {% if blackJack.getWinner(handIndex) == "player" %}
         <p class="pay-text green-text-bg">+{{ blackJack.player.getWinnings()[handIndex]}} Schilling (+ {{ blackJack.player.getBets()[handIndex]}} i insats)</p>
         {% elseif blackJack.getWinner(handIndex) == "dealer" %}
@@ -44,11 +36,8 @@
 
         </div>
     {% endfor %}
-    {# </div>
-    <div class="hands-container"> #}
         <div class="hand-box">
         <h3>Givens hand:</h3>
-        {# Dealers hand #}
         {% if blackJack.player.getStand %}
         {% for cardIndex, card in blackJack.dealer.getHand %}
             <figure>

@@ -13,7 +13,7 @@ class Player extends Dealer
 
     private string $name;
 
-    private array $winnings; //test
+    private array $winnings;
 
     public function __construct($deck, $handCount, $name, $money = 100)
     {
@@ -42,10 +42,6 @@ class Player extends Dealer
 
     public function setBets($bets): void
     {
-        // if (array_sum($bets) <= $this->money) {
-        //     $this->money -= array_sum($bets);
-        // }
-
         $this->bets = $bets;
         $this->money -= array_sum($bets);
     }
