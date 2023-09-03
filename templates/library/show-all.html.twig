@@ -31,8 +31,8 @@
             <td>{{ book.author }}</td>
             <td>{{ book.isbn }}</td>
             <td><img src="{{ book.image }}" width="80px" alt="Bokens bild"></td>
-            <td><a href="update/{{ book.id }}">Redigera info</a></td>
-            <td><a href="delete/{{ book.id }}">Ta bort bok</a></td>
+            <td><a href="{{ path('lib_update_form', {'id': book.id}) }}">Redigera info</a></td>
+            <td><a href="{{ path('lib_delete_form', {'id': book.id}) }}">Ta bort bok</a></td>
         </tr>
     {% endfor %}
     </tbody>
