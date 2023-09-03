@@ -25,11 +25,12 @@ class Blackjack
     {
         if ($this->player->getStand()) {
             // $this->dealer->drawCard($this->deck);
-            if (array_sum($this->dealer->getScore()) > 17) {
+            if (array_sum($this->dealer->getScore()) >= 17) {
                 $this->dealer->setStand();
                 // TEST
                 for ($i = 0; $i < count($this->player->getHands()); $i++) {
-                    $this->decideWinner($i);
+                    // $this->decideWinner($i);
+                    $this->handleWin($i);
                 }
                 // TEST
                 return;
@@ -53,31 +54,59 @@ class Blackjack
         return $this->dealer->getScore();
     }
 
-    // public function payWinnings(int $handIndex)
-    // {
-    //     if ($this->decideWinner() == "dealer") {
-    //         $this->player->storeWinning()
-    //         return;
-    //     }
+    public function getWinner(int $handIndex): string
+    {
+        $playerPoints = array_sum($this->getPlayerScore($handIndex));
+        $dealerPoints = array_sum($this->getDealerScore());
 
-    //     if ($this->decideWinner() == "player") {
-    //         $winFactor = 2;
+        if (!$this->player->getStand() || !$this->dealer->getStand()) {
+            return "";
+        }
 
-    //         if ($playerPoints == 21) {
-    //             $winFactor = 2.5;
-    //         }
-    //         $this->player->setMoney($this->player->getMoney() + ($this->player->getBets()[$handIndex] * $winFactor));
+        if ($playerPoints > 21) {
+            return "dealer";
+        }
 
-    //         return "player";
-    //     }
+        if ($dealerPoints > 21 || $playerPoints > $dealerPoints) {
+            return "player";
+        }
 
-    //     if ($playerPoints == $dealerPoints) {
-    //         $this->player->setMoney($this->player->getMoney() + ($this->player->getBets()[$handIndex] * 1));
-    //         return "draw";
-    //     }
+        if ($playerPoints == $dealerPoints) {
+            return "draw";
+        }
 
-    //     return "dealer";
-    // }
+        return "dealer";
+    }
+
+    public function handleWin(int $handIndex): void
+    {
+        $playerPoints = array_sum($this->getPlayerScore($handIndex));
+        $dealerPoints = array_sum($this->getDealerScore());
+
+        if ($this->getWinner($handIndex) == "dealer") {
+            $this->player->storeWinning($this->player->getBets()[$handIndex] * -1);
+            return;
+        }
+
+        if ($this->getWinner($handIndex) == "player") {
+            $winFactor = 2;
+
+            if ($playerPoints == 21) {
+                $winFactor = 2.5;
+            }
+            $this->player->setMoney($this->player->getMoney() + ($this->player->getBets()[$handIndex] * $winFactor));
+            $this->player->storeWinning($this->player->getBets()[$handIndex] * ($winFactor - 1));
+            return;
+        }
+
+        if ($this->getWinner($handIndex) == "draw") {
+            $this->player->setMoney($this->player->getMoney() + ($this->player->getBets()[$handIndex] * 1));
+            $this->player->storeWinning(0);
+            return;
+        }
+
+        $this->player->storeWinning($this->player->getBets()[$handIndex] * -1);
+    }
 
     // public function decideWinner(int $handIndex): string
     // {
@@ -89,54 +118,30 @@ class Blackjack
     //     }
 
     //     if ($playerPoints > 21) {
+    //         $this->player->storeWinning($this->player->getBets()[$handIndex] * -1);
     //         return "dealer";
     //     }
 
     //     if ($dealerPoints > 21 || $playerPoints > $dealerPoints) {
+    //         $winFactor = 2;
+
+    //         if ($playerPoints == 21) {
+    //             $winFactor = 2.5;
+    //         }
+    //         $this->player->setMoney($this->player->getMoney() + ($this->player->getBets()[$handIndex] * $winFactor));
+    //         $this->player->storeWinning($this->player->getBets()[$handIndex] * ($winFactor - 1));
+
     //         return "player";
     //     }
 
     //     if ($playerPoints == $dealerPoints) {
+    //         $this->player->setMoney($this->player->getMoney() + ($this->player->getBets()[$handIndex] * 1));
+    //         $this->player->storeWinning(0);
     //         return "draw";
     //     }
 
+    //     $this->player->storeWinning($this->player->getBets()[$handIndex] * -1);
     //     return "dealer";
     // }
-
-    public function decideWinner(int $handIndex): string
-    {
-        $playerPoints = array_sum($this->getPlayerScore($handIndex));
-        $dealerPoints = array_sum($this->getDealerScore());
-
-        if (!$this->player->getStand() || !$this->dealer->getStand()) {
-            return "";
-        }
-
-        if ($playerPoints > 21) {
-            $this->player->storeWinning($this->player->getBets()[$handIndex] * -1);
-            return "dealer";
-        }
-
-        if ($dealerPoints > 21 || $playerPoints > $dealerPoints) {
-            $winFactor = 2;
-
-            if ($playerPoints == 21) {
-                $winFactor = 2.5;
-            }
-            $this->player->setMoney($this->player->getMoney() + ($this->player->getBets()[$handIndex] * $winFactor));
-            $this->player->storeWinning($this->player->getBets()[$handIndex] * ($winFactor - 1));
-
-            return "player";
-        }
-
-        if ($playerPoints == $dealerPoints) {
-            $this->player->setMoney($this->player->getMoney() + ($this->player->getBets()[$handIndex] * 1));
-            $this->player->storeWinning(0);
-            return "draw";
-        }
-
-        $this->player->storeWinning($this->player->getBets()[$handIndex] * -1);
-        return "dealer";
-    }
 
 }

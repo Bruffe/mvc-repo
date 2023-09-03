@@ -201,4 +201,34 @@ Project-related styling
 
 .yellow-text-bg {
     background-color: yellow;
+    color: black;
+}
+
+.navbar-ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-ul li {
+    margin-right: 20px;
+    outline: 4px solid black;
+    outline-offset: 0.2em;
+}
+
+.blackjack-link {
+    text-decoration: none;
+    /* color: #333; */
+    color: #fff;
+    transition: color 0.3s;
+    font-size: x-large;
+}
+
+.blackjack-link:hover {
+    color: #ff5733;
+}
+
+.current-hand {
+    border: 2px dashed yellow;
 }

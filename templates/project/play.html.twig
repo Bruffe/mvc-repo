@@ -4,20 +4,19 @@
 
 {% block body %}
     <h1>Blackjack</h1>
-    {# <p>Spelarnamn: {{ playerName }}</p> #}
-    {# <p>Hands: {{ hands }}</p> #}
     <p>Spelarnamn: {{ blackJack.player.getName }}</p>
-    {# <p>{{ blackJack.player.name }}</p> #}
     <p>Händer: {{ blackJack.player.getHands|length }}</p>    
     <p>Schilling kvar: {{ blackJack.player.getMoney }}</p>
 
     <div class="hands-container">
-    {# <span>Spelarens händer:</span> #}
     {% for handIndex, hand in blackJack.player.getHands() %}
+        {% if blackJack.player.getCurrentHand == handIndex and not blackJack.player.getStand %}
+        <div class="hand-box current-hand">
+        {% else %}
         <div class="hand-box">
+        {% endif %}
         <h3>Spelares hand {{ handIndex + 1}}:</h3>
         {% for cardIndex, card in hand.hand %}
-            {# <figure style="width: 64px"> #}
             <figure>
                 <img src="{{ asset('img/cards/' ~ card.getUrl()) }}" width="64px" alt="Spelarens kort">
                 <figcaption>{{ blackJack.getPlayerScore(handIndex)[cardIndex] }}</figcaption>
@@ -26,16 +25,23 @@
 
         <p>{{ "Total poäng: " ~ blackJack.player.getScore(handIndex)|reduce((carry, item) => carry + item, 0) }}</p>
         <p>{{ "Bet: " ~ blackJack.player.getBets[handIndex] ~ " Schilling" }}</p>
-        {# {% if blackJack.decideWinner(handIndex) != "" %}
-            <p>{{ blackJack.player.getWinnings()[handIndex] }} Schilling</p> #}
-        {% if blackJack.decideWinner(handIndex) == "player" %}
+
+        {# {% if blackJack.decideWinner(handIndex) == "player" %}
         <p class="pay-text green-text-bg">+{{ blackJack.player.getWinnings()[handIndex]}} Schilling (+ {{ blackJack.player.getBets()[handIndex]}} i insats)</p>
         {% elseif blackJack.decideWinner(handIndex) == "dealer" %}
         <p class="pay-text red-text-bg">{{ blackJack.player.getWinnings()[handIndex]}} Schilling (insatsen)</p>
         {% elseif blackJack.decideWinner(handIndex) == "draw" %}
-        {# <p style="font-size: small; background-color: yellow;">Lika: {{ blackJack.player.getWinnings()[handIndex]}} Schilling + insats</p> #}
+        <p class="pay-text yellow-text-bg">Insats returnerad</p>
+        {% endif %} #}
+
+        {% if blackJack.getWinner(handIndex) == "player" %}
+        <p class="pay-text green-text-bg">+{{ blackJack.player.getWinnings()[handIndex]}} Schilling (+ {{ blackJack.player.getBets()[handIndex]}} i insats)</p>
+        {% elseif blackJack.getWinner(handIndex) == "dealer" %}
+        <p class="pay-text red-text-bg">{{ blackJack.player.getWinnings()[handIndex]}} Schilling (insatsen)</p>
+        {% elseif blackJack.getWinner(handIndex) == "draw" %}
         <p class="pay-text yellow-text-bg">Insats returnerad</p>
         {% endif %}
+
         </div>
     {% endfor %}
     {# </div>
@@ -77,11 +83,5 @@
         <input class="blackjack-button" type="submit" name="show" value="Starta om spelet"
         onClick="this.form.action='{{ path('proj_restart_game') }}';">
     </form>
-
-    <p>{{ blackJack.player.getStand }}, {{ blackJack.dealer.getStand }}</p>
-
-    {% if blackJack.player.getStand and blackJack.dealer.getStand %}
-    <p>Game over</p>
-    {% endif %}
 
 {% endblock %}

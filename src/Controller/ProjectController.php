@@ -28,6 +28,7 @@ class ProjectController extends AbstractController
 
         if ($session->has("blackJackDetails")) {
             $blackJackDetails = $session->get("blackJackDetails");
+            echo($blackJackDetails['money']);
 
             $data = [
                 // "playerName" => $blackJackDetails->playerName
@@ -55,6 +56,7 @@ class ProjectController extends AbstractController
             $blackJackDetails = $session->get("blackJackDetails");
 
             $blackJack->player->setMoney($blackJackDetails["money"]);
+            // $blackJack->player->setMoney(1000);
         }
         
         $session->set("blackJack", $blackJack);
