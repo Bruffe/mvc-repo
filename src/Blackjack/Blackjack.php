@@ -40,7 +40,7 @@ class Blackjack
         $this->player->drawCard($this->deck, $this->player->getCurrentHand());
     }
 
-    public function getPlayerScore($handIndex): array
+    public function getPlayerScore($handIndex = 0): array
     {
         return $this->player->getScore($handIndex);
     }
@@ -102,5 +102,10 @@ class Blackjack
         }
 
         $this->player->storeWinning($this->player->getBets()[$handIndex] * -1);
+    }
+
+    public function getDeck(): DeckOfCards
+    {
+        return $this->deck;
     }
 }

@@ -30,6 +30,11 @@ class Dealer
         return $this->hands;
     }
 
+    public function getHandObject(int $handIndex = 0): BlackjackHand
+    {
+        return $this->hands[$handIndex];
+    }
+
     public function setStand(): void
     {
         $this->isStanding = true;
