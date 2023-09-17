@@ -28,7 +28,7 @@ class ProjectController extends AbstractController
 
         if ($session->has("blackJackDetails")) {
             $blackJackDetails = $session->get("blackJackDetails");
-            echo($blackJackDetails['money']);
+            // echo($blackJackDetails['money']);
 
             $data = [
                 "playerName" => $blackJackDetails["playerName"]
@@ -56,7 +56,7 @@ class ProjectController extends AbstractController
 
             $blackJack->player->setMoney($blackJackDetails["money"]);
         }
-        
+
         $session->set("blackJack", $blackJack);
 
         return $this->redirectToRoute('proj_bet');
@@ -133,19 +133,20 @@ class ProjectController extends AbstractController
         Request $request
     ): Response
     {
-        // $hands = $request->get("hands");
         $bets[] = $request->get("bet1");
 
-        // if (isset($request->get("bet2"))) {
         if ($request->request->has("bet2")) {
             $bets[] = $request->get("bet2");
         }
 
-        // if (isset($request->get("bet3"))) {
         if ($request->request->has("bet3")) {
             $bets[] = $request->get("bet3");
         }
 
+        // $blackJack = new Blackjack($session->get('hands'), $session->get('player_name'));
+        // if ($session->has("blackJack")) {
+        //     $blackJack = $session->get("blackJack");
+        // }
         $blackJack = $session->get("blackJack");
         if (!$blackJack->player->canAffordBet($bets)) {
             return $this->redirectToRoute('proj_bet');
