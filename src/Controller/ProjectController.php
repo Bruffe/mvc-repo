@@ -120,8 +120,10 @@ class ProjectController extends AbstractController
     public function projectBet(SessionInterface $session): Response
     {
         $hands = $session->get("hands");
+        $blackJack = $session->get("blackJack");
         $data = [
-            "hands" => $hands
+            "hands" => $hands,
+            "money" => $blackJack->player->getMoney()
         ];
 
         return $this->render('project/bet.html.twig', $data);

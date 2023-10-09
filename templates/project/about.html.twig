@@ -5,7 +5,10 @@
 {% block body %}
     <div>
         <h1>Om projektet</h1>
-        <p>Detta projekt sista delen av mvc-kursen. Mitt projekt handlar om Blackjack.<p>
+        <h3>Detta projekt är sista delen av mvc-kursen. Jag valde att göra Blackjack med support för upp till 3 händer.</h3>
+        <p><b><u>Förklaring av en spelrunda:</u></b> Spelaren får ange sitt namn och välja antal händer (1-3). Spelaren börjar med 100 Schilling och får ange hur mycket av de som ska satsas per hand. Efter det får spelaren 2 kort per hand och spelar färdigt en hand i taget. Därefter visar given sina kort och spelar färdigt sin hand. Då är rundan klar och eventuella vinster betalas ut. Vinst utan att nå 21 poäng ger 200% av insatsen, vinst med Blackjack (21 poäng) ger 250% av insatsen. Ifall det blir lika ges insatsen tillbaka till spelaren. Om spelaren har pengar kvar efter rundan finns möjligheten att fortsätta.</p>
+        <p><b><u>Vinnare i olika lägen:</u></b> Om spelaren spricker (får mer än 21 poäng) vinner given. Om endast given spricker vinner spelaren. Om ingen spricker vinner den med mest poäng. Om båda får lika mycket poäng (utan att spricka) blir det lika.</p>
+        <p><b><u>Kortvärden:</u></b> Kort med 1-10 är värda samma som deras valör. Knekt, dam och kung är värda 10. Ess är värda 1 eller 11 beroende på vad som passar innehavaren bäst.</p>
     </div>
 
 {% endblock %}

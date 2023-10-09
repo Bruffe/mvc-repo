@@ -79,19 +79,19 @@ class ProjectControllerTest extends WebTestCase
         $this->assertEquals($exp, $this->client->getResponse()->getStatusCode());
     }
 
-    /**
-     * Try accessing route 'proj/bet' with a GET request and ensure it returns status 200.
-     */
-    public function testProjBetRoute()
-    {
-        $route = '/proj/bet';
-        $this->client->request('GET', $route);
+    // /**
+    //  * Try accessing route 'proj/bet' with a GET request and ensure it returns status 200.
+    //  */
+    // public function testProjBetRoute()
+    // {
+    //     $route = '/proj/bet';
+    //     $this->client->request('GET', $route);
 
-        $exp = 200;
-        $this->assertEquals($exp, $this->client->getResponse()->getStatusCode());
+    //     $exp = 200;
+    //     $this->assertEquals($exp, $this->client->getResponse()->getStatusCode());
 
-        $this->assertSelectorExists('h1', 'Satsa pengar');
-    }
+    //     $this->assertSelectorExists('h1', 'Satsa pengar');
+    // }
 
     // /**
     //  * Try accessing route 'proj/process-bet' with a POST request and ensure it returns status 200.

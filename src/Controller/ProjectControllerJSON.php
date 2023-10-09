@@ -87,7 +87,7 @@ class ProjectControllerJSON extends AbstractController
         return $this->redirectToRoute('proj_api_game');
     }
 
-    #[Route('/proj/api/restart', name: "proj_api_restart")]
+    #[Route('/proj/api/restart', name: "proj_api_restart", methods: ['POST'])]
     public function projectAPIRestart(
         SessionInterface $session,
         Request $request
@@ -110,7 +110,7 @@ class ProjectControllerJSON extends AbstractController
         $blackJack->player->setBets($bets);
 
         $session->set("blackJack", $blackJack);
-        
+
         $data = [
             "name" => $name,
             "hands" => $hands,
