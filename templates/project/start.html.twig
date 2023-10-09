@@ -8,7 +8,7 @@
 
     <form method="POST" action="{{ path('proj_init_game') }}">
         <label for="player-name">Namn för spelare:</label><br>
-        <input type="text" name="player-name" value="{{ playerName }}" required><br>
+        <input class="blackjack-select" type="text" name="player-name" value="{{ playerName }}" required><br>
 
         <label for="hands">Antal händer:</label>
         <select class="blackjack-select" name="hands">

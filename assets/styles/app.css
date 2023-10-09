@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather|Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+Saurashtra:700|Noto+Sans+Saurashtra:400');
 
 body {
     background-color: lightgray;
@@ -139,6 +140,8 @@ Project-related styling
 
 .project-body {
     background-color: #06571d;
+    font-family: 'Noto Sans Saurashtra';
+    font-weight: 400;
 }
 
 .project-header,
@@ -150,6 +153,8 @@ Project-related styling
 .project-header *,
 .project-footer * {
     color: #ccc;
+    font-family: 'Noto Sans Saurashtra';
+    font-weight: 700;
 }
 
 .blackjack-link,
@@ -157,6 +162,27 @@ Project-related styling
 .blackjack-select,
 .blackjack-select option {
     color: #666;
+}
+
+.blackjack-button {
+    margin: 10px;
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    font-weight: 600;
+    color: #fff;
+    font-size: 14px;
+    height: 32px;
+    padding: 8px 12px;
+    border-radius: 50px;
+    background-image: linear-gradient(180deg,#7c8aff,#3c4fe0);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+    transition: all .2s ease-out;
+}
+
+.blackjack-button:hover{
+    box-shadow: 0 8px 22px 0 rgb(37 44 97 / 15%), 0 4px 6px 0 rgb(93 100 148 / 20%);
 }
 
 .hands-container {

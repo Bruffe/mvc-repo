@@ -64,7 +64,7 @@
         <input class="blackjack-button" type="submit" name="show" value="Låt datorn spela"
         onClick="this.form.action='{{ path('proj_draw') }}';">
 
-        {% elseif blackJack.player.getStand and blackJack.dealer.getStand %}
+        {% elseif blackJack.player.getStand and blackJack.dealer.getStand and blackJack.player.getMoney > 0 %}
         <input class="blackjack-button" type="submit" name="show" value="Fortsätt spela"
         onClick="this.form.action='{{ path('proj_continue') }}';">
 
