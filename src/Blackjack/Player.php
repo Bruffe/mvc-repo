@@ -9,6 +9,7 @@ class Player extends Dealer
 {
     protected int $money;
     protected int $handsLeftToPlay;
+    protected int $currentHand;
     protected array $bets = [];
 
     private string $name;

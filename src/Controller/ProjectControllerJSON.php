@@ -34,7 +34,7 @@ class ProjectControllerJSON extends AbstractController
             );
             return $response;
         }
-        
+
         $player = [];
         $player["name"] = $blackJack->player->getName();
         for ($i = 0; $i < count($blackJack->player->getHands()); $i++) {
@@ -114,8 +114,12 @@ class ProjectControllerJSON extends AbstractController
     public function projectAPIRestart(
         SessionInterface $session,
         Request $request
-    ): Response
-    {
+    ): Response {
+        // set defaults
+        $hands = 1;
+        $bets = [20];
+
+        // get values from request
         $name = $request->get('api-blackjack-name');
         $hands = (int) $request->get('api-blackjack-hands');
         $bet = (int) $request->get('api-blackjack-bets');

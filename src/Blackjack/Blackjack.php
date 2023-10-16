@@ -76,7 +76,6 @@ class Blackjack
     public function handleWin(int $handIndex): void
     {
         $playerPoints = array_sum($this->getPlayerScore($handIndex));
-        $dealerPoints = array_sum($this->getDealerScore());
 
         if ($this->getWinner($handIndex) == "dealer") {
             $this->player->storeWinning($this->player->getBets()[$handIndex] * -1);

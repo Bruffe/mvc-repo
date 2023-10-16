@@ -20,8 +20,7 @@ class ProjectController extends AbstractController
     #[Route("/proj/start-game", name: "proj_start_game")]
     public function projectStartGame(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $data = [
             "playerName" => ""
         ];
@@ -41,8 +40,7 @@ class ProjectController extends AbstractController
     public function projectInitGame(
         SessionInterface $session,
         Request $request
-    ): Response
-    {
+    ): Response {
         $playerName = $request->get('player-name');
         $handAmount = $request->get('hands');
 
@@ -50,7 +48,7 @@ class ProjectController extends AbstractController
         $session->set('hands', $handAmount);
 
         $blackJack = new Blackjack($session->get('hands'), $session->get('player_name'));
-        
+
         if ($session->has("blackJackDetails")) {
             $blackJackDetails = $session->get("blackJackDetails");
 
@@ -67,6 +65,8 @@ class ProjectController extends AbstractController
     {
         if ($session->has("blackJack")) {
             $blackJack = $session->get("blackJack");
+        } else {
+            return $this->redirectToRoute('proj_start_game');
         }
 
         $data = [
@@ -133,8 +133,7 @@ class ProjectController extends AbstractController
     public function projectProcessBet(
         SessionInterface $session,
         Request $request
-    ): Response
-    {
+    ): Response {
         $bets[] = $request->get("bet1");
 
         if ($request->request->has("bet2")) {

@@ -12,9 +12,6 @@ class Dealer
 
     public function __construct($deck, $handCount = 1)
     {
-        $this->handsLeftToPlay = $handCount;
-        $this->currentHand = 0;
-
         for ($i = 1; $i <= $handCount; $i++) {
             $this->hands[] = new BlackjackHand($deck, 2);
         }
@@ -53,5 +50,10 @@ class Dealer
     public function drawCard(DeckOfCards $deck, $handIndex = 0): void
     {
         $card = $this->hands[$handIndex]->draw($deck, 1);
+    }
+
+    public function setHand($cards, $handIndex = 0): void
+    {
+        $this->hands[$handIndex]->hand = $cards;
     }
 }

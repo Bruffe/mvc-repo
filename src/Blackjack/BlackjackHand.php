@@ -13,7 +13,7 @@ class BlackjackHand extends CardHand
     {
         $this->draw($deck, $amount);
     }
-    
+
     public function getPoints(): array
     {
         /** @var int[] $pointArray */
