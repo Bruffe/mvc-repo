@@ -21,10 +21,18 @@ class ProjectControllerJSON extends AbstractController
     #[Route('/proj/api/game', name: "proj_api_game")]
     public function projectAPIGameInfo(SessionInterface $session): Response
     {
-        $blackJack = new Blackjack(1, "Test");
-
         if ($session->has("blackJack")) {
             $blackJack = $session->get("blackJack");
+        } else {
+            $data = [
+                "Error message" => "Unable to display information. There is no active game."
+            ];
+
+            $response = new JsonResponse($data);
+            $response->setEncodingOptions(
+                $response->getEncodingOptions() | JSON_PRETTY_PRINT
+            );
+            return $response;
         }
         
         $player = [];
@@ -59,10 +67,18 @@ class ProjectControllerJSON extends AbstractController
     #[Route('/proj/api/draw', name: "proj_api_draw", methods: ['POST'])]
     public function projectAPIDraw(SessionInterface $session): Response
     {
-        $blackJack = new Blackjack(1, "Test");
-
         if ($session->has("blackJack")) {
             $blackJack = $session->get("blackJack");
+        } else {
+            $data = [
+                "Error message" => "Unable to play on. There is no active game."
+            ];
+
+            $response = new JsonResponse($data);
+            $response->setEncodingOptions(
+                $response->getEncodingOptions() | JSON_PRETTY_PRINT
+            );
+            return $response;
         }
 
         $blackJack->play();
@@ -75,14 +91,21 @@ class ProjectControllerJSON extends AbstractController
     #[Route('/project/api/stand', name: "proj_api_stand", methods: ['POST'])]
     public function projectAPIStand(SessionInterface $session): Response
     {
-        $blackJack = new Blackjack(1, "Test");
-
         if ($session->has("blackJack")) {
             $blackJack = $session->get("blackJack");
             $blackJack->player->incrementCurrentHand();
             $session->set("blackJack", $blackJack);
-        }
+        } else {
+            $data = [
+                "Error message" => "Unable to set stand. There is no active game."
+            ];
 
+            $response = new JsonResponse($data);
+            $response->setEncodingOptions(
+                $response->getEncodingOptions() | JSON_PRETTY_PRINT
+            );
+            return $response;
+        }
 
         return $this->redirectToRoute('proj_api_game');
     }
@@ -93,8 +116,6 @@ class ProjectControllerJSON extends AbstractController
         Request $request
     ): Response
     {
-        // HÄMTA FRÅN REQUEST OCH SKAPA BLACKJACK MED DEN INFON
-        // BET PÅ 20 PER HAND SOM DEFAULT?
         $name = $request->get('api-blackjack-name');
         $hands = (int) $request->get('api-blackjack-hands');
         $bet = (int) $request->get('api-blackjack-bets');
@@ -127,10 +148,18 @@ class ProjectControllerJSON extends AbstractController
     #[Route('/project/api/cards', name: "proj_api_cards")]
     public function projectAPICards(SessionInterface $session): Response
     {
-        $blackJack = new Blackjack(1, "Test");
-
         if ($session->has("blackJack")) {
             $blackJack = $session->get("blackJack");
+        } else {
+            $data = [
+                "Error message" => "Unable to display cards. There is no active game."
+            ];
+
+            $response = new JsonResponse($data);
+            $response->setEncodingOptions(
+                $response->getEncodingOptions() | JSON_PRETTY_PRINT
+            );
+            return $response;
         }
 
         $deck = [
