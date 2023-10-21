@@ -117,7 +117,8 @@ class ProjectControllerJSON extends AbstractController
     ): Response {
         // set defaults
         $hands = 1;
-        $bets = [20];
+        $bet = 20;
+        $bets = [];
 
         // get values from request
         $name = $request->get('api-blackjack-name');
